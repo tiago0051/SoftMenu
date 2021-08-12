@@ -11,7 +11,7 @@ export default createGlobalStyle`
 
     body {
         background-color: ${props => props.theme.colors.background};
-        color: white;
+        color: ${props => props.theme.colors.text};
     }
 
     a {

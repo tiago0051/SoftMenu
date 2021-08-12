@@ -1,21 +1,17 @@
 {
-  "name": "nextjs",
+  "name": "softmenu",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next start"
   },
   "dependencies": {
-    "next": "11.1.0",
+    "next": "^11.1.1-canary.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "styled-components": "^5.3.0"
   },
-  "devDependencies": {
-    "eslint": "7.32.0",
-    "eslint-config-next": "11.1.0"
-  }
+  "devDependencies": {}
 }

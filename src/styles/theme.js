@@ -11,11 +11,11 @@ export const dark = {
 
 export const light = {
     colors: {
-        background: '#0E1419',
-        primary: '#313442',
+        background: 'rgb(230, 230, 230)',
+        primary: 'rgb(130, 50, 50)',
         secondary: '#D95704',
         tertiary: '#252833',
-        text: 'white',
-        text2: '#97a0cf'
+        text: 'black',
+        text2: 'white'
     }
 }
