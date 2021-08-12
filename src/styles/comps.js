@@ -11,7 +11,7 @@ export const PerfilStyled = styled.header`
     flex-wrap: nowrap;
 
     #wallpaper {
-        height: 15vh;
+        height: 20vh;
         width: 100vw;
 
         display: flex;
@@ -21,7 +21,8 @@ export const PerfilStyled = styled.header`
         justify-content: center;
 
         background: ${props => props.backgroundImage ? 'url('+ props.backgroundImage  +')': props.theme.colors.primary};
-        background-size: contain;
+        background-size: cover;
+        background-position: 10px;
 
         margin-bottom: 70px;
     }
@@ -38,14 +39,36 @@ export const PerfilStyled = styled.header`
         overflow: hidden;
     }
 
-    #informacoes {
+    #empresa {
         margin-bottom: -60px;
         margin-left: 20px;
+    }
+
+    p {
+        font-weight: 300;
+        font-style: italic;
+    }
+
+    #status {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: ${props => props.aberto ? "green" : "red"};
+        color: ${props => props.theme.colors.text2};
+        padding: 5px 10px;
+        border-radius: 20px;
+    }
+
+    #informacoes {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 10px;
     }
 `
 
 export const CategoriasStyled = styled.section`
-    margin-top: 30px;
+    margin-top: 10px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -63,7 +86,7 @@ export const Categoria = styled.div`
 
     div {
         height: 130px;
-        border-radius: 900%;
+        border-radius: 10px;
         margin-bottom: 10px;
     }
 `
