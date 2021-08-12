@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Title = styled.h1`
-    font-size: 26px;
+    font-size: 23px;
     font-weight: 900;
 `
 
@@ -74,6 +74,7 @@ export const PerfilStyled = styled.header`
         justify-items: center;
         justify-content: center;
         align-items: center;
+        margin: 0 5px;
     }
 
     #informacoes p {
@@ -81,15 +82,15 @@ export const PerfilStyled = styled.header`
         justify-items: center;
         justify-content: center;
         align-items: center;
-        font-size: 14px;
+        font-size: 10px;
     }
 
     #informacoes span {
-        font-size: 14px;
+        font-size: 10px;
     }
 
     #informacoes p svg {
-        height: 18px;
+        height: 14px;
     }
 `
 

@@ -33,6 +33,16 @@ export default function Perfil(){
                     <p><FeatherIcons icon="dollar-sign"/> Taxa de entrega</p>
                     <span>R$ 0,00</span>
                 </div>
+
+                <div id="informacoe">
+                    <p><FeatherIcons icon="clock"/> Tempo de Espera</p>
+                    <span>40 min - 60 min</span>
+                </div>
+
+                <div id="informacoe">
+                    <p><FeatherIcons icon="phone"/> contato</p>
+                    <span>(21) 98541-5544</span>
+                </div>
             </div>
         </PerfilStyled>
     )
