@@ -1,6 +1,6 @@
 {
     "name": "SoftMenu",
-    "short_name": "softmenu",
+    "short_name": "SoftMenu",
     "icons": [
       {
         "src": "/static/icons/android-chrome-192x192.png",
