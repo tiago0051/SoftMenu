@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Image from 'next/image'
 
 import user from '../../assets/loja/user.png'
@@ -6,6 +6,10 @@ import user from '../../assets/loja/user.png'
 import { PerfilStyled, Title } from '../../styles/comps'
 
 export default function Perfil(){
+
+    const [tittle, setTittle] = useState('Softmenus')
+    const [descricao, setDescricao] = useSate('Hamburgueria Gurme')
+
     return (
         <PerfilStyled>
             <div id="wallpaper">
@@ -13,8 +17,8 @@ export default function Perfil(){
             </div>
 
             <div id="informacoes">
-                <Title>Softmenus</Title>
-                <p>Hamburgueria Gurme</p>
+                <Title>{tittle}</Title>
+                <p>{descricao}</p>
             </div>
         </PerfilStyled>
     )
