@@ -42,4 +42,25 @@ export const PerfilStyled = styled.header`
 `
 
 export const CategoriasStyled = styled.section`
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 20px;
+    overflow-x: scroll;
+    flex-shrink: 0;
+`
+
+export const Categoria = styled.div`
+    height: 150px;
+    width: 130px;
+    text-align: center;
+    margin: 0 5px;
+    flex-shrink: 0;
+
+    div {
+        height: 130px;
+        border-radius: 900%;
+        margin-bottom: 10px;
+    }
 `
