@@ -104,21 +104,55 @@ export const CategoriasStyled = styled.section`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding: 20px;
     overflow-x: scroll;
     flex-shrink: 0;
+    margin-top: 20px;
 `
 
 export const Categoria = styled.div`
-    height: 130px;
-    width: 110px;
+    height: 105px;
+    width: 70px;
     text-align: center;
-    margin: 0 5px;
+    margin: 0 4px;
     flex-shrink: 0;
 
     div {
-        height: 110px;
+        height: 70px;
         border-radius: 200%;
-        margin-bottom: 10px;
+        margin-bottom: 7px;
+    }
+
+    h2 {
+        font-size: 11px;
+        width: 100%;
+        color: ${props => props.theme.colors.text3};
+        font-weight: 700;
+    }
+`
+
+export const InputPesquisar = styled.div`
+    position: relative;
+    width: calc(100% - 14px);
+    margin: 0 7px;
+
+    input{
+        width: 100%;
+        background: none;
+        border: 2px solid ${props => props.theme.colors.text3};
+        border-radius: 5px;
+        padding: 3px 20px 3px 5px;
+    }
+
+    input::placeholder{
+        color: ${props => props.theme.colors.text3};
+        opacity: 0.4;
+    }
+
+    svg {
+        position: absolute;
+        right: 5px;
+        top: 4px;
+        height: 20px;
+        color: ${props => props.theme.colors.text3};
     }
 `

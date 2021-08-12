@@ -1,6 +1,10 @@
+import Head from 'next/head'
+import FeatherIcons from 'feather-icons-react'
+
 import Perfil from "../components/loja/perfil"
 import Categorias from "../components/loja/categorias"
-import Head from 'next/head'
+
+import {InputPesquisar} from "../styles/comps"
 
 export default function Home() {
   return (
@@ -16,6 +20,11 @@ export default function Home() {
         </header>
 
         <Categorias/>
+
+        <InputPesquisar>
+          <input placeholder="Pesquisar produto" type="text"/>
+          <FeatherIcons icon="search"/>
+        </InputPesquisar>
       </main>
     </div>
   )
