@@ -92,6 +92,11 @@ export const PerfilStyled = styled.header`
     #informacoes p svg {
         height: 14px;
     }
+
+    #informacoes #informacoe span a {
+        font-size: 10px;
+        color: ${props => props.theme.colors.text3};
+    }
 `
 
 export const CategoriasStyled = styled.section`
@@ -105,15 +110,15 @@ export const CategoriasStyled = styled.section`
 `
 
 export const Categoria = styled.div`
-    height: 150px;
-    width: 130px;
+    height: 130px;
+    width: 110px;
     text-align: center;
     margin: 0 5px;
     flex-shrink: 0;
 
     div {
-        height: 130px;
-        border-radius: 10px;
+        height: 110px;
+        border-radius: 200%;
         margin-bottom: 10px;
     }
 `

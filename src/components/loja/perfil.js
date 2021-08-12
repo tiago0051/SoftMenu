@@ -41,7 +41,7 @@ export default function Perfil(){
 
                 <div id="informacoe">
                     <p><FeatherIcons icon="phone"/> contato</p>
-                    <span>(21) 98541-5544</span>
+                    <span><a href="tel:2198541-5544">(21) 98541-5544</a></span>
                 </div>
             </div>
         </PerfilStyled>
