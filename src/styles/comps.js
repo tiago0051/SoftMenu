@@ -44,7 +44,7 @@ export const PerfilStyled = styled.header`
         margin-left: 20px;
     }
 
-    p {
+    #empresa p {
         font-weight: 300;
         font-style: italic;
     }
@@ -64,6 +64,32 @@ export const PerfilStyled = styled.header`
         flex-direction: row;
         justify-content: center;
         margin-top: 10px;
+        color: ${props => props.theme.colors.text3};
+        font-weight: 700;
+    }
+
+    #informacoes #informacoe {
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #informacoes p {
+        display: flex;
+        justify-items: center;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+    }
+
+    #informacoes span {
+        font-size: 14px;
+    }
+
+    #informacoes p svg {
+        height: 18px;
     }
 `
 

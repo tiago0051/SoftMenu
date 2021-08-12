@@ -16,6 +16,7 @@ export const light = {
         secondary: '#D95704',
         tertiary: '#252833',
         text: 'black',
-        text2: 'white'
+        text2: 'white',
+        text3: '#CB2929'
     }
 }

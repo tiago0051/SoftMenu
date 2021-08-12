@@ -31,6 +31,7 @@ export default function Perfil(){
             <div id="informacoes">
                 <div id="informacoe">
                     <p><FeatherIcons icon="dollar-sign"/> Taxa de entrega</p>
+                    <span>R$ 0,00</span>
                 </div>
             </div>
         </PerfilStyled>
