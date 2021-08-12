@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Title = styled.h1`
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 900;
 `
 
@@ -9,17 +9,16 @@ export const PerfilStyled = styled.header`
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    align-items: center;
 
     #wallpaper {
-        height: 20vh;
+        height: 15vh;
         width: 100vw;
 
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         flex-wrap: nowrap;
-        align-items: center;
-        justify-content: flex-end;
+        align-items: flex-end;
+        justify-content: center;
 
         background: ${props => props.backgroundImage ? 'url('+ props.backgroundImage  +')': props.theme.colors.primary};
         background-size: contain;
@@ -27,17 +26,21 @@ export const PerfilStyled = styled.header`
         margin-bottom: 70px;
     }
 
-    #wallpaper > div {
+    #wallpaper > #avatar {
         display: block;
         width: 130px;
         height: 130px;
 
         margin-bottom: -65px;
         flex-shrink: 0;
+        margin-right: 20px;
+        border-radius: 10px;
+        overflow: hidden;
     }
 
     #informacoes {
-        text-align: center;
+        margin-bottom: -60px;
+        margin-left: 20px;
     }
 `
 
