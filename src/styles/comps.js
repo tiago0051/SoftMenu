@@ -110,16 +110,23 @@ export const CategoriasStyled = styled.section`
 `
 
 export const Categoria = styled.div`
-    height: 105px;
-    width: 70px;
+    height: 22%;
+    width: 22%;
     text-align: center;
-    margin: 0 4px;
     flex-shrink: 0;
+    position: relative;
+    margin: 0 5px;
+    margin-bottom: 10%;
 
     div {
-        height: 70px;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
         border-radius: 200%;
-        margin-bottom: 7px;
+    }
+
+    img {
+        object-fit: cover;
     }
 
     h2 {
@@ -127,6 +134,8 @@ export const Categoria = styled.div`
         width: 100%;
         color: ${props => props.theme.colors.text3};
         font-weight: 700;
+        position: absolute;
+        bottom: -20px;
     }
 `
 
@@ -141,6 +150,7 @@ export const InputPesquisar = styled.div`
         border: 2px solid ${props => props.theme.colors.text3};
         border-radius: 5px;
         padding: 3px 20px 3px 5px;
+        font-size: 18px;
     }
 
     input::placeholder{
@@ -154,5 +164,48 @@ export const InputPesquisar = styled.div`
         top: 4px;
         height: 20px;
         color: ${props => props.theme.colors.text3};
+    }
+`
+
+export const ProdutosStyled = styled.section`
+    padding: 10px;
+`
+
+export const Produto = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    padding: 10px 0 ;
+    border-top: 1px solid rgb(0, 0, 0, 0.2);
+
+    #informacoes {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100px;
+        color: ${props => props.theme.colors.text3};
+    }
+
+    #informacoes p {
+        font-size: 13px;
+        margin-top: 5px;
+    }
+
+    #informacoes span {
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    #image, #image *{
+        height: 90px;
+        width: 125px;
+        align-self: center;
+        justify-self: center;
+    }
+
+    img {
+        object-fit: cover;
+        border-radius: 10px;
     }
 `
