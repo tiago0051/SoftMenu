@@ -4,7 +4,7 @@ var db;
 var connection
 
 export default async function handler(req, res) {
-  var user
+  var user = "mafia-burguer"
 
   console.log(req.headers.host)
 
