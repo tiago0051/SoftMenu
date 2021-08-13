@@ -35,7 +35,9 @@ export default function Home(props) {
 }
 
 export const getStaticProps = async () => {
+  console.log(process.env.LINK_API)
   const response = await axios.post('http://'+ process.env.LINK_API +'/empresa', {user: "mafia-burguer"});
+  console.log(response)
 
   const empresa = response.data
 
