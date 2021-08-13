@@ -7,7 +7,7 @@ import user from '../../assets/loja/mafiaburguer.jpg'
 import { PerfilStyled, Title } from '../../styles/comps'
 
 export default function Perfil(props){
-
+    console.log(props.empresa)
     return (
         <PerfilStyled backgroundImage={props.empresa.urls.background} aberto={props.empresa.status == "ABERTO"}>
             <div id="wallpaper">
