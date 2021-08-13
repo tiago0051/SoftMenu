@@ -7,7 +7,7 @@ import Produtos from '../components/loja/produtos'
 
 import {InputPesquisar} from "../styles/comps"
 
-export default function Home() {
+export default function Home(props) {
   return (
     <div>
 
@@ -17,7 +17,7 @@ export default function Home() {
 
       <main>
         <header>
-          <Perfil/>
+          <Perfil empresa={props.empresa}/>
         </header>
 
         <Categorias/>
@@ -31,4 +31,16 @@ export default function Home() {
       </main>
     </div>
   )
+}
+
+export const getStaticProps = async () => {
+  var seconds = new Date(Date.now()).getSeconds()
+  return {
+    props: {
+      empresa: {
+        nomeEmpresa: seconds
+      }
+    },
+    revalidate: 20
+  }
 }

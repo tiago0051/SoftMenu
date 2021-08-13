@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Image from 'next/image'
 import FeatherIcons from 'feather-icons-react'
 
@@ -7,11 +7,15 @@ import background from '../../assets/loja/background.jpeg'
 
 import { PerfilStyled, Title } from '../../styles/comps'
 
-export default function Perfil(){
+export default function Perfil(props){
 
-    const [tittle, setTittle] = useState('Máfia Burguer')
+    const [tittle, setTittle] = useState('')
     const [descricao, setDescricao] = useState('Hamburgueria Gurme')
     const [status, setStatus] = useState('FECHADO')
+
+    useEffect(() => {
+        setTittle(props.empresa.nomeEmpresa)
+    }, [])
 
     return (
         <PerfilStyled backgroundImage={background.src}>
