@@ -36,7 +36,9 @@ export default function Home(props) {
 
 export const getStaticProps = async () => {
   var response
-  response = await axios.post('http://'+ process.env.LINK_API +'/empresa', {user: "mafia-burguer"}).catch(() => {
+  response = await axios.post('http://'+ process.env.LINK_API +'/empresa', {user: "mafia-burguer"})
+  
+  if(response == undefined){
     response = {data: {
       "user": "mafia-burguer",
       "nome": "Máfia Burguer",
@@ -65,8 +67,7 @@ export const getStaticProps = async () => {
       },
       "tempoEspera": "40 min - 60 min"
     }}
-  })
-  console.log(response)
+  }
 
   const empresa = response.data
 
