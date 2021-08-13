@@ -5,6 +5,7 @@ var db;
 export default async function handler(req, res) {
   const user = req.body.user
 
+  console.log(process.env.MONGO_URI)
   var teste = await MongoClient.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true})
 
   const db = await teste.db("Main");
