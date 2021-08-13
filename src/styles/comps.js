@@ -27,7 +27,7 @@ export const PerfilStyled = styled.header`
         margin-bottom: 70px;
     }
 
-    #wallpaper > #avatar {
+    #wallpaper > #avatar > img {
         display: block;
         width: 130px;
         height: 130px;
@@ -181,7 +181,7 @@ export const Produto = styled.div`
     width: 100%;
     justify-content: space-between;
     padding: 10px 0 ;
-    border-top: 1px solid rgb(0, 0, 0, 0.2);
+    border-top: 1px solid rgb(0, 0, 0, 0.1);
 
     #informacoes {
         display: flex;
@@ -211,5 +211,62 @@ export const Produto = styled.div`
     img {
         object-fit: cover;
         border-radius: 10px;
+    }
+`
+
+export const BebidasStyled = styled.section`
+
+    h2 {
+        background-color: ${props => props.theme.colors.primary};
+        color: ${props => props.theme.colors.text2};
+        padding: 10px;
+    }
+
+`
+
+export const Bebida = styled.div`
+    border-top: 1px solid rgb(0, 0, 0, 0.3);
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    #informacoes {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    #produto {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    #produto img {
+        width: 80px;
+        border: 1px solid rgb(0, 0, 0, 0.3);
+        border-radius: 10px;
+    }
+
+    #produto > div {
+        background-color: ${props => props.theme.colors.primary};
+        height: 30px;
+        padding: 5px 10px;
+        margin-left: 20px;
+        color: ${props => props.theme.colors.text2};
+        border-radius: 5px;
+    }
+
+    #produto > div > button {
+        background: none;
+        border: none;
+        color: ${props => props.theme.colors.text2};
+        margin: 0 5px;
+    }
+
+    #produto > div > span {
+        margin: 0 10px;
     }
 `

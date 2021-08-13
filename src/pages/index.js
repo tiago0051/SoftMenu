@@ -39,7 +39,15 @@ export const getStaticProps = async () => {
       empresa: {
         nomeEmpresa: "Máfia Burguer",
         descricao: "Hamburgueria Gurme",
-        status: "ABERTO"
+        status: "ABERTO",
+        urls: {
+          background: "https://softmenus.s3.sa-east-1.amazonaws.com/Empresas/background.jpeg",
+          avatar: "https://softmenus.s3.sa-east-1.amazonaws.com/Empresas/mafiaburguer.jpg"
+        },
+        produtos: {
+          nome: "Pizza Calabresa",
+          imagem: ""
+        }
       }
     },
     revalidate: 60

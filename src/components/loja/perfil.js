@@ -3,34 +3,23 @@ import Image from 'next/image'
 import FeatherIcons from 'feather-icons-react'
 
 import user from '../../assets/loja/mafiaburguer.jpg'
-import background from '../../assets/loja/background.jpeg'
 
 import { PerfilStyled, Title } from '../../styles/comps'
 
 export default function Perfil(props){
 
-    const [tittle, setTittle] = useState('')
-    const [descricao, setDescricao] = useState('')
-    const [status, setStatus] = useState('')
-
-    useEffect(() => {
-        setTittle(props.empresa.nomeEmpresa)
-        setDescricao(props.empresa.descricao)
-        setStatus(props.empresa.status)
-    }, [])
-
     return (
-        <PerfilStyled backgroundImage={background.src} aberto={status == "ABERTO"}>
+        <PerfilStyled backgroundImage={props.empresa.urls.background} aberto={props.empresa.status == "ABERTO"}>
             <div id="wallpaper">
                 <div id="status">
-                    <tittle>{status}</tittle>
+                    <tittle>{props.empresa.status}</tittle>
                 </div>
 
-                <div id="avatar"><Image src={user} alt="me"/></div>
+                <div id="avatar"><img src={props.empresa.urls.avatar} alt="me"/></div>
 
                 <div id="empresa">
-                    <Title>{tittle}</Title>
-                    <p>{descricao}</p>
+                    <Title>{props.empresa.nomeEmpresa}</Title>
+                    <p>{props.empresa.descricao}</p>
                 </div>
             </div>
 

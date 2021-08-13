@@ -47,16 +47,4 @@ export default createGlobalStyle`
     textarea:focus{
         border: ${props => props.theme.colors.secondary} solid 2px;
     }
-
-    button {
-        background-color: ${props => props.theme.colors.secondary};
-        color: ${props => props.theme.colors.text};
-        padding: 10px;
-        border: 0;
-        border-radius: 5px;
-        width: 100%;
-        box-shadow: 0 5px 5px 1px rgb(0, 0, 0, 0.4);
-        margin-bottom: 9px;
-        cursor: pointer;
-    }
 `;
