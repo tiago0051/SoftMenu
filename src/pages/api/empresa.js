@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import empresaModel from '../../models/empresaModel'
 
 export default async function handler(req, res) {
-  const user = req.body.user
+  const user = req.body.user | ""
 
   try{
     if(mongoose.connection.readyState < 1){
