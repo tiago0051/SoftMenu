@@ -1,6 +1,7 @@
 import { MongoClient } from 'mongodb';
 
 var db;
+var connection
 
 export default async function handler(req, res) {
   var user
@@ -8,9 +9,11 @@ export default async function handler(req, res) {
   if(req.headers.host == 'localhost:3000' || req.headers.host =='softmenus.com.br')
     user = "mafia-burguer"
 
-  var teste = await MongoClient.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true})
+    if(!db || !connection){
+      connection = await MongoClient.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true})
 
-  const db = await teste.db("Main");
+      db = await connection.db("Main");
+    }
 
   const empresa = await db.collection("empresas").findOne({user: user})
 

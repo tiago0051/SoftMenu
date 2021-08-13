@@ -36,9 +36,7 @@ export default function Home(props) {
 }
 
 export const getStaticProps = async (ctx) => {
-
-  var response
-  response = await axios.post(process.env.LINK_API +'/empresa', {user: "mafia-burguer"})
+  var response = await axios.post(process.env.LINK_API +'/empresa')
 
   const empresa = response.data
 
