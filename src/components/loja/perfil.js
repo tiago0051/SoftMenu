@@ -18,7 +18,7 @@ export default function Perfil(props){
                 <div id="avatar"><img src={props.empresa.urls.avatar} alt="me"/></div>
 
                 <div id="empresa">
-                    <Title>{props.empresa.nomeEmpresa}</Title>
+                    <Title>{props.empresa.nome}</Title>
                     <p>{props.empresa.descricao}</p>
                 </div>
             </div>

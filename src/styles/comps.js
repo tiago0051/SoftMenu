@@ -118,14 +118,11 @@ export const Categoria = styled.div`
     margin: 0 5px;
     margin-bottom: 10%;
 
-    div {
+    img {
         object-fit: cover;
         width: 100%;
         height: 100%;
         border-radius: 200%;
-    }
-
-    img {
         object-fit: cover;
     }
 

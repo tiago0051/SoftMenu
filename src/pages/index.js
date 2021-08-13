@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import FeatherIcons from 'feather-icons-react'
+import axios from 'axios'
 
 import Perfil from "../components/loja/perfil"
 import Categorias from "../components/loja/categorias"
@@ -20,7 +21,7 @@ export default function Home(props) {
           <Perfil empresa={props.empresa}/>
         </header>
 
-        <Categorias/>
+        <Categorias empresa={props.empresa}/>
 
         <InputPesquisar>
           <input placeholder="Pesquisar produto" type="text"/>
@@ -34,21 +35,13 @@ export default function Home(props) {
 }
 
 export const getStaticProps = async () => {
+  const response = await axios.post('http://'+ process.env.LINK_API +'/empresa', {user: "mafia-burguer"});
+
+  const empresa = response.data
+
   return {
     props: {
-      empresa: {
-        nomeEmpresa: "Máfia Burguer",
-        descricao: "Hamburgueria Gurme",
-        status: "ABERTO",
-        urls: {
-          background: "https://softmenus.s3.sa-east-1.amazonaws.com/Empresas/background.jpeg",
-          avatar: "https://softmenus.s3.sa-east-1.amazonaws.com/Empresas/mafiaburguer.jpg"
-        },
-        produtos: {
-          nome: "Pizza Calabresa",
-          imagem: ""
-        }
-      }
+      empresa: empresa
     },
     revalidate: 60
   }
