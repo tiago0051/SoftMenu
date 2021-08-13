@@ -36,7 +36,36 @@ export default function Home(props) {
 
 export const getStaticProps = async () => {
   var response
-  response = await axios.post(process.env.LINK_API +'/empresa', {user: "mafia-burguer"})
+  response = await axios.post(process.env.LINK_API +'/empresa', {user: "mafia-burguer"}).catch(() => {
+    response = {data: {
+      "user": "mafia-burguer",
+      "nome": "Máfia Burguer",
+      "descricao": "Hamburgueria Gurme",
+      "status": "ABERTO",
+      "urls": {
+        "background": "https://softmenus.s3.sa-east-1.amazonaws.com/Empresas/Mafia+Burguer/background.jpeg",
+        "avatar": "https://softmenus.s3.sa-east-1.amazonaws.com/Empresas/Mafia+Burguer/mafiaburguer.jpg"
+      },
+      "produtos": [
+        {
+          "nome": "Pizza Calabresa",
+          "imageUrl": "https://softmenus.s3.sa-east-1.amazonaws.com/Empresas/Mafia+Burguer/pizza.jpeg"
+        }
+      ],
+      "__v": 0,
+      "categorias": [
+        {
+          "nome": "bebidas",
+          "imagemUrl": "https://softmenus.s3.sa-east-1.amazonaws.com/Empresas/Mafia+Burguer/bebidas.jpeg"
+        }
+      ],
+      "contato": "+55 (21) 99109-0212",
+      "taxaEntrega": {
+        "$numberDecimal": "5.50"
+      },
+      "tempoEspera": "40 min - 60 min"
+    }}
+  })
   
   if(response == undefined){
     response = {data: {
