@@ -1,3 +1,4 @@
+import app from 'next/app'
 import GlobalStyle from '../styles/globals'
 import { ThemeProvider } from 'styled-components'
 import {light} from '../styles/theme';

@@ -3,9 +3,11 @@ import { MongoClient } from 'mongodb';
 var db;
 
 export default async function handler(req, res) {
-  const user = req.body.user
+  var user
 
-  console.log(process.env.MONGO_URI)
+  if(req.headers.host == 'localhost:3000' || req.headers.host =='softmenus.com.br')
+    user = "mafia-burguer"
+
   var teste = await MongoClient.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true})
 
   const db = await teste.db("Main");
