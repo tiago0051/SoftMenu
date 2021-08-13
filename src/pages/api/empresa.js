@@ -6,6 +6,8 @@ var connection
 export default async function handler(req, res) {
   var user
 
+  console.log(req.headers.host)
+
   if(req.headers.host == 'localhost:3000' || req.headers.host =='softmenus.com.br')
     user = "mafia-burguer"
 
