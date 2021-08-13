@@ -10,15 +10,17 @@ import { PerfilStyled, Title } from '../../styles/comps'
 export default function Perfil(props){
 
     const [tittle, setTittle] = useState('')
-    const [descricao, setDescricao] = useState('Hamburgueria Gurme')
-    const [status, setStatus] = useState('FECHADO')
+    const [descricao, setDescricao] = useState('')
+    const [status, setStatus] = useState('')
 
     useEffect(() => {
         setTittle(props.empresa.nomeEmpresa)
+        setDescricao(props.empresa.descricao)
+        setStatus(props.empresa.status)
     }, [])
 
     return (
-        <PerfilStyled backgroundImage={background.src}>
+        <PerfilStyled backgroundImage={background.src} aberto={status == "ABERTO"}>
             <div id="wallpaper">
                 <div id="status">
                     <tittle>{status}</tittle>

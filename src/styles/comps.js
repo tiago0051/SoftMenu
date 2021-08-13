@@ -64,7 +64,7 @@ export const PerfilStyled = styled.header`
         flex-direction: row;
         justify-content: center;
         margin-top: 10px;
-        color: ${props => props.theme.colors.text3};
+        color: ${props => props.theme.colors.text};
         font-weight: 700;
     }
 
@@ -95,7 +95,7 @@ export const PerfilStyled = styled.header`
 
     #informacoes #informacoe span a {
         font-size: 10px;
-        color: ${props => props.theme.colors.text3};
+        color: ${props => props.theme.colors.text};
     }
 `
 
@@ -132,7 +132,7 @@ export const Categoria = styled.div`
     h2 {
         font-size: 11px;
         width: 100%;
-        color: ${props => props.theme.colors.text3};
+        color: ${props => props.theme.colors.text};
         font-weight: 700;
         position: absolute;
         bottom: -20px;
@@ -147,14 +147,18 @@ export const InputPesquisar = styled.div`
     input{
         width: 100%;
         background: none;
-        border: 2px solid ${props => props.theme.colors.text3};
+        border: 2px solid ${props => props.theme.colors.text};
         border-radius: 5px;
         padding: 3px 20px 3px 5px;
         font-size: 18px;
     }
 
+    input:focus{
+        border: 2px solid ${props => props.theme.colors.primary};
+    }
+
     input::placeholder{
-        color: ${props => props.theme.colors.text3};
+        color: ${props => props.theme.colors.text};
         opacity: 0.4;
     }
 
@@ -163,7 +167,7 @@ export const InputPesquisar = styled.div`
         right: 5px;
         top: 4px;
         height: 20px;
-        color: ${props => props.theme.colors.text3};
+        color: ${props => props.theme.colors.text};
     }
 `
 
@@ -184,7 +188,7 @@ export const Produto = styled.div`
         flex-direction: column;
         justify-content: space-between;
         height: 100px;
-        color: ${props => props.theme.colors.text3};
+        color: ${props => props.theme.colors.text};
     }
 
     #informacoes p {

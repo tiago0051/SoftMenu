@@ -34,13 +34,14 @@ export default function Home(props) {
 }
 
 export const getStaticProps = async () => {
-  var seconds = new Date(Date.now()).getSeconds()
   return {
     props: {
       empresa: {
-        nomeEmpresa: seconds
+        nomeEmpresa: "Máfia Burguer",
+        descricao: "Hamburgueria Gurme",
+        status: "ABERTO"
       }
     },
-    revalidate: 20
+    revalidate: 60
   }
 }
