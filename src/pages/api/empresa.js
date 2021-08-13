@@ -8,7 +8,7 @@ export default async function handler(req, res) {
 
   console.log(req.headers.host)
 
-  if(req.headers.host == 'localhost:3000' || req.headers.host =='softmenus.com.br')
+  if(req.headers.host == 'localhost:3000' || req.headers.host =='www.softmenus.com.br' || req.headers.host =='softmenus.com.br')
     user = "mafia-burguer"
 
     if(!db || !connection){
