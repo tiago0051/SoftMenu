@@ -11,7 +11,8 @@ export const dark = {
 
 export const light = {
     colors: {
-        background: 'rgb(230, 230, 230)',
+        background: '#FFFFFF',
+        background2: '#F2F2F2',
         primary: 'rgb(180, 50, 50)',
         secondary: '#D95704',
         tertiary: '#252833',

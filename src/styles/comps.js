@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Title = styled.h1`
     font-size: 23px;
-    font-weight: 900;
+    font-weight: 700;
 `
 
 export const PerfilStyled = styled.header`
@@ -24,7 +24,7 @@ export const PerfilStyled = styled.header`
         background-size: cover;
         background-position: 10px;
 
-        margin-bottom: 70px;
+        margin-bottom: 40px;
     }
 
     #wallpaper > #avatar > img {
@@ -32,16 +32,15 @@ export const PerfilStyled = styled.header`
         width: 130px;
         height: 130px;
 
-        margin-bottom: -65px;
+        margin-bottom: -30px;
         flex-shrink: 0;
-        margin-right: 20px;
         border-radius: 10px;
         overflow: hidden;
     }
 
     #empresa {
-        margin-bottom: -60px;
-        margin-left: 20px;
+        width: 100%;
+        text-align: center;
     }
 
     #empresa p {
@@ -50,13 +49,11 @@ export const PerfilStyled = styled.header`
     }
 
     #status {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background-color: ${props => props.aberto ? "green" : "red"};
-        color: ${props => props.theme.colors.text2};
+        border:1px solid ${props => props.aberto ? "green" : "red"};
+        color: ${props => props.aberto ? "green" : "red"};
         padding: 5px 10px;
-        border-radius: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgb(0, 0, 0, 0.5);
     }
 
     #informacoes {
@@ -91,6 +88,7 @@ export const PerfilStyled = styled.header`
 
     #informacoes p svg {
         height: 14px;
+        color: ${props => props.theme.colors.primary}
     }
 
     #informacoes #informacoe span a {
@@ -106,7 +104,8 @@ export const CategoriasStyled = styled.section`
     justify-content: center;
     overflow-x: scroll;
     flex-shrink: 0;
-    margin-top: 20px;
+    padding: 5px;
+    background-color: ${props => props.theme.colors.background2};
 `
 
 export const Categoria = styled.div`
@@ -115,61 +114,16 @@ export const Categoria = styled.div`
     text-align: center;
     flex-shrink: 0;
     position: relative;
-    margin: 0 5px;
-    margin-bottom: 10%;
-
-    img {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-        border-radius: 200%;
-        object-fit: cover;
-    }
 
     h2 {
-        font-size: 11px;
-        width: 100%;
+        font-size: 14px;
         color: ${props => props.theme.colors.text};
-        font-weight: 700;
-        position: absolute;
-        bottom: -20px;
-    }
-`
-
-export const InputPesquisar = styled.div`
-    position: relative;
-    width: calc(100% - 14px);
-    margin: 0 7px;
-
-    input{
-        width: 100%;
-        background: none;
-        border: 2px solid ${props => props.theme.colors.text};
-        border-radius: 5px;
-        padding: 3px 20px 3px 5px;
-        font-size: 18px;
-    }
-
-    input:focus{
-        border: 2px solid ${props => props.theme.colors.primary};
-    }
-
-    input::placeholder{
-        color: ${props => props.theme.colors.text};
-        opacity: 0.4;
-    }
-
-    svg {
-        position: absolute;
-        right: 5px;
-        top: 4px;
-        height: 20px;
-        color: ${props => props.theme.colors.text};
+        font-weight: 400;
     }
 `
 
 export const ProdutosStyled = styled.section`
-    padding: 10px;
+    padding: 0 10px;
 `
 
 export const Produto = styled.div`
@@ -190,7 +144,6 @@ export const Produto = styled.div`
 
     #informacoes p {
         font-size: 13px;
-        margin-top: 5px;
     }
 
     #informacoes span {

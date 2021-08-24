@@ -10,16 +10,12 @@ export default function Perfil(props){
     return (
         <PerfilStyled backgroundImage={props.empresa.urls.background} aberto={props.empresa.status == "ABERTO"}>
             <div id="wallpaper">
-                <div id="status">
-                    <tittle>{props.empresa.status}</tittle>
-                </div>
-
                 <div id="avatar"><img src={props.empresa.urls.avatar} alt="me"/></div>
+            </div>
 
-                <div id="empresa">
+            <div id="empresa">
                     <Title>{props.empresa.nome}</Title>
                     <p>{props.empresa.descricao}</p>
-                </div>
             </div>
 
             <div id="informacoes">
@@ -29,13 +25,14 @@ export default function Perfil(props){
                 </div>
 
                 <div id="informacoe">
-                    <p><FeatherIcons icon="clock"/> Tempo de Espera</p>
-                    <span>40 min - 60 min</span>
+                    <div id="status">
+                        <tittle>{props.empresa.status}</tittle>
+                    </div>
                 </div>
 
                 <div id="informacoe">
-                    <p><FeatherIcons icon="phone"/> contato</p>
-                    <span><a href="tel:2198541-5544">(21) 98541-5544</a></span>
+                    <p><FeatherIcons icon="clock"/> Tempo de Espera</p>
+                    <span>40 min - 60 min</span>
                 </div>
             </div>
         </PerfilStyled>

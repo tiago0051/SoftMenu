@@ -7,8 +7,6 @@ import Perfil from "../components/loja/perfil"
 import Categorias from "../components/loja/categorias"
 import Produtos from '../components/loja/produtos'
 
-import {InputPesquisar} from "../styles/comps"
-
 export default function Home(props) {
   return (
     <div>
@@ -23,11 +21,6 @@ export default function Home(props) {
         </header>
 
         <Categorias empresa={props.empresa}/>
-
-        <InputPesquisar>
-          <input placeholder="Pesquisar produto" type="text"/>
-          <FeatherIcons icon="search"/>
-        </InputPesquisar>
 
         <Produtos/>
       </main>
