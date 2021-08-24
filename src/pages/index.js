@@ -22,7 +22,7 @@ export default function Home(props) {
 
         <Categorias empresa={props.empresa}/>
 
-        <Produtos/>
+        <Produtos empresa={props.empresa}/>
       </main>
     </div>
   )

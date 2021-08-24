@@ -49,7 +49,7 @@ export const PerfilStyled = styled.header`
     }
 
     #status {
-        border:1px solid ${props => props.aberto ? "green" : "red"};
+        border:2px solid ${props => props.aberto ? "green" : "red"};
         color: ${props => props.aberto ? "green" : "red"};
         padding: 5px 10px;
         border-radius: 5px;
@@ -106,9 +106,17 @@ export const CategoriasStyled = styled.section`
     flex-shrink: 0;
     padding: 5px;
     background-color: ${props => props.theme.colors.background2};
+
+    ::-webkit-scrollbar {
+        height: 2px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
 `
 
-export const Categoria = styled.div`
+export const Categoria = styled.a`
     height: 22%;
     width: 22%;
     text-align: center;
