@@ -16,7 +16,7 @@ export default function Categorias(props){
         <CategoriasStyled>
             {
                 categorias.map(element => (
-                    <Categoria href={"#cat-" + element.nome}>
+                    <Categoria href={"#cat-" + element.nome} key={element.nome}>
                         <h2>{element.nome}</h2>
                     </Categoria>
                 ))

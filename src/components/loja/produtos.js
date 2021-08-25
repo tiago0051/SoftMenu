@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react"
+import Router from 'next/router'
+
 import {Produto, ProdutosStyled } from "../../styles/comps"
 
 export default function Produtos(props){
@@ -15,16 +17,14 @@ export default function Produtos(props){
 
         const produto = id.split('-')
 
-        produto.map((inf) => {
-            console.log(inf)
-        })
+        Router.push("/loja/produto/" + produto[0])
     }
 
     return(
         <ProdutosStyled>
             {props.empresa.produtos.map((produto) => {
                 return(
-                    <Produto key={produto.nome} onClick={adicionarProdutoCarrinho} id={produto.nome + "-" + produto.preço}>
+                    <Produto key={produto.nome} onClick={adicionarProdutoCarrinho} id={produto.nome + "-" + produto.preço + "-" + produto.imageUrl}>
                         <div id="informacoes">
                             <h2>{produto.nome}</h2>
                             <p>{produto.descrição}</p>
