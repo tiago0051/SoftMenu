@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React, {useState} from "react"
 import FeatherIcons from "feather-icons-react"
 import { useRouter } from "next/router"
 import axios from "axios"
@@ -8,18 +8,12 @@ import { ProdutoStyled, WallPaperProduct, Titulo, Bar } from "../../../styles/pr
 import Adicionais from '../../../components/loja/produto/adicionais'
 import Bebidas from '../../../components/loja/bebidas'
 
-import background from '../../../assets/loja/pizza.jpeg'
-
 export default function Produto(props){
     const router = useRouter()
 
-    const [Produto, setProduto] = useState({})
+    const {produto:nomeProduto} = router.query
 
-    useEffect(() => {
-        const {produto:nomeProduto} = router.query
-
-        setProduto(props.empresa.produtos.find(produto => produto.nome == nomeProduto))
-    }, [])
+    const [Produto, setProduto] = useState(props.empresa.produtos.find(produto => produto.nome == nomeProduto))
 
     function adicionarProdutoCarrinho(event){
         var carrinho = JSON.parse(window.localStorage.getItem("carrinho"))
@@ -34,7 +28,7 @@ export default function Produto(props){
     return(
         <ProdutoStyled>
             <WallPaperProduct backgroundImage={Produto.imageUrl}>
-                <FeatherIcons icon="chevron-left"/>
+                <div onClick={() => router.back()}><FeatherIcons icon="chevron-left"/></div>
             </WallPaperProduct>
 
             <Titulo>
@@ -42,9 +36,14 @@ export default function Produto(props){
                 <p>{Produto.descrição}</p>
             </Titulo>
 
-            <Adicionais/>
+            <Adicionais adicionais={Produto.adicionais}/>
 
-            <Bebidas title="Adicionar bebida"/>
+            <Bebidas title="Adicionar bebida" empresa={props.empresa}/>
+
+            <br/>
+            <br/>
+            <br/>
+            <br/>
 
             <Bar>
                 <div id="quantidade">

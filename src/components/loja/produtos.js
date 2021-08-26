@@ -2,12 +2,9 @@ import { useEffect, useState } from "react"
 import Router from 'next/router'
 
 import {Produto, ProdutosStyled } from "../../styles/comps"
+import Bebidas from "./bebidas"
 
 export default function Produtos(props){
-
-    useEffect(() => {
-        console.log("a")
-    }, [])
 
     function adicionarProdutoCarrinho(event){
         var id = event.target.parentElement.parentElement.id
@@ -15,7 +12,7 @@ export default function Produtos(props){
             id = event.target.parentElement.id
         }
 
-        const produto = id.split('-')
+        const produto = id.split('_-')
 
         Router.push("/loja/produto/" + produto[0])
     }
@@ -24,7 +21,7 @@ export default function Produtos(props){
         <ProdutosStyled>
             {props.empresa.produtos.map((produto) => {
                 return(
-                    <Produto key={produto.nome} onClick={adicionarProdutoCarrinho} id={produto.nome + "-" + produto.preço + "-" + produto.imageUrl}>
+                    <Produto key={produto.nome} onClick={adicionarProdutoCarrinho} id={produto.nome + "_-" + produto.preço + "_-" + produto.imageUrl}>
                         <div id="informacoes">
                             <h2>{produto.nome}</h2>
                             <p>{produto.descrição}</p>
@@ -42,6 +39,8 @@ export default function Produtos(props){
                     </Produto>
                 )
             })}
+
+            <Bebidas title="Bebidas" empresa={props.empresa}/>
         </ProdutosStyled>
     )
 }

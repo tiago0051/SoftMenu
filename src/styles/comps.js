@@ -131,7 +131,6 @@ export const Categoria = styled.a`
 `
 
 export const ProdutosStyled = styled.section`
-    padding: 0 10px;
 `
 
 export const Produto = styled.div`
@@ -139,7 +138,7 @@ export const Produto = styled.div`
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
-    padding: 10px 0 ;
+    padding: 10px 10px ;
     border-top: 1px solid rgb(0, 0, 0, 0.1);
 
     #informacoes {
