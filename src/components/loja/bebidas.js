@@ -6,12 +6,7 @@ export default function Bebidas(props){
     const [Bebidas, setBebidas] = useState([])
 
     useEffect(() => {
-        var items = props.empresa.produtos.find(produto => produto.categoria == "Bebidas")
-        if(typeof items == Array){
-            setBebidas(items)
-        }else{
-            setBebidas([items])
-        }
+        setBebidas(props.empresa.produtos.filter(produto => produto.categoria == "Bebidas"))
     },[])
 
     function listarBebidas(){

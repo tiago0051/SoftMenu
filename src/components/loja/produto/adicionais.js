@@ -5,12 +5,21 @@ import { VaricoesStyled, Varicao } from "../../../styles/produto"
 export default function Adicionais(props){
 
     const [Adicionais, SetAdicionais] = useState(props.adicionais)
+    const [ShowAdicionais, setShowAdicionais] = useState(false)
+
+    useEffect(() => {
+        setShowAdicionais(Adicionais[0] != undefined)
+    }, [Adicionais])
 
     return (
         <VaricoesStyled>
-            <div id="title">
-                <h2>Variações do Produto</h2>
-            </div>
+            {
+                ShowAdicionais ? (
+                    <div id="title">
+                        <h2>Variações do Produto</h2>
+                    </div>
+                ) : (<> </>)
+            }
             {
                 Adicionais.map(adicional => (
                     <Varicao key={adicional.nome}>

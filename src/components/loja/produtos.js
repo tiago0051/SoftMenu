@@ -19,7 +19,7 @@ export default function Produtos(props){
 
     return(
         <ProdutosStyled>
-            {props.empresa.produtos.map((produto) => {
+            {props.empresa.produtos.filter(produto => produto.categoria != "Bebidas").map((produto) => {
                 return(
                     <Produto key={produto.nome} onClick={adicionarProdutoCarrinho} id={produto.nome + "_-" + produto.preço + "_-" + produto.imageUrl}>
                         <div id="informacoes">
