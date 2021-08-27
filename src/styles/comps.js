@@ -138,7 +138,7 @@ export const Produto = styled.div`
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
-    padding: 10px 10px ;
+    padding: 10px 10px;
     border-top: 1px solid rgb(0, 0, 0, 0.1);
 
     #informacoes {

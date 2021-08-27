@@ -11,29 +11,29 @@ export default function Bebidas(props){
 
     function listarBebidas(){
         const list = Bebidas.map(bebida => (
-            <Bebida>
-            <div id="informacoes">
-                <h3>{bebida.nome}</h3>
-                
-                <span>
-                    {
-                        bebida.preço.toLocaleString('pt-BR', {
-                            style: 'currency',
-                            currency: 'BRL',
-                        })
-                    }
-                </span>
-            </div>
-
-            <div id="produto">
-                <img src={bebida.imageUrl}/>
-                <div>
-                    <button>-</button>
-                    <span>1</span>
-                    <button>+</button>
+            <Bebida id="cat-Bebidas" key={bebida.nome}>
+                <div id="informacoes">
+                    <h3>{bebida.nome}</h3>
+                    
+                    <span>
+                        {
+                            bebida.preço.toLocaleString('pt-BR', {
+                                style: 'currency',
+                                currency: 'BRL',
+                            })
+                        }
+                    </span>
                 </div>
-            </div>
-        </Bebida>
+
+                <div id="produto">
+                    <img src={bebida.imageUrl}/>
+                    <div>
+                        <button>-</button>
+                        <span>1</span>
+                        <button>+</button>
+                    </div>
+                </div>
+            </Bebida>
         ))
 
         return list
