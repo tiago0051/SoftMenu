@@ -79,7 +79,7 @@ export const getStaticPaths = async () => {
     const empresa = response.data
 
     const paths = empresa.produtos.map(produto => ({
-        params: {produto: produto.nome, empresa: empresa.nome}
+        params: {produto: produto.nome}
     }))
 
     return {paths, fallback: false}
