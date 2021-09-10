@@ -76,7 +76,7 @@ export const getStaticProps = async (ctx) => {
 
 export const getStaticPaths = async () => {
 
-    var response = await axios.post(process.env.LINK_API +'/empresa', {user: "mafia-burguer"})
+    var response = await axios.post(process.env.LINK_API +'/empresa')
   
     const empresa = response.data
 
