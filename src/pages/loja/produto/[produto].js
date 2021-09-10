@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React, {useState} from "react"
 import FeatherIcons from "feather-icons-react"
 import { useRouter } from "next/router"
 import axios from "axios"
@@ -6,7 +6,6 @@ import axios from "axios"
 import { ProdutoStyled, WallPaperProduct, Titulo, Bar } from "../../../styles/produto"
 
 import Adicionais from '../../../components/loja/produto/adicionais'
-import Bebidas from '../../../components/loja/bebidas'
 
 export default function Produto(props){
     const router = useRouter()
@@ -74,11 +73,11 @@ export const getStaticProps = async (ctx) => {
 
 export const getStaticPaths = async () => {
 
-    var response = await axios.post(process.env.LINK_API +'/empresa')
+    var response = await axios.post(process.env.LINK_API +'/produto')
   
-    const empresa = response.data
+    const produtos = response.data
 
-    const paths = empresa.produtos.map(produto => ({
+    const paths = produtos.map(produto => ({
         params: {produto: produto.nome}
     }))
 
