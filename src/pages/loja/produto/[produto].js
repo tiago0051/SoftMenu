@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import FeatherIcons from "feather-icons-react"
 import { useRouter } from "next/router"
 import axios from "axios"
@@ -13,7 +13,7 @@ export default function Produto(props){
 
     const {produto:nomeProduto} = router.query
 
-    const [Produto, setProduto] = useState(props.empresa.produtos.find(produto => produto.nome == nomeProduto))
+    const [Produto, setProduto] = useState(props.produto)
 
     function adicionarProdutoCarrinho(event){
         var carrinho = JSON.parse(window.localStorage.getItem("carrinho"))
@@ -38,8 +38,6 @@ export default function Produto(props){
 
             <Adicionais adicionais={Produto.adicionais}/>
 
-            <Bebidas title="Adicionar bebida" empresa={props.empresa}/>
-
             <br/>
             <br/>
             <br/>
@@ -63,13 +61,13 @@ export default function Produto(props){
 }
 
 export const getStaticProps = async (ctx) => {
-    var response = await axios.post(process.env.LINK_API +'/empresa')
+    var response = await axios.post(process.env.LINK_API +'/produto', {produto: ctx.params.produto})
   
-    const empresa = response.data
+    const produto = response.data
   
     return {
       props: {
-        empresa: empresa
+        produto: produto
       }
     }
 }
@@ -81,7 +79,7 @@ export const getStaticPaths = async () => {
     const empresa = response.data
 
     const paths = empresa.produtos.map(produto => ({
-        params: {produto: produto.nome}
+        params: {produto: produto.nome, empresa: empresa.nome}
     }))
 
     return {paths, fallback: false}
