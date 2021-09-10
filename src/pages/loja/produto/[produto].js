@@ -12,7 +12,7 @@ export default function Produto(props){
 
     const {produto:nomeProduto} = router.query
 
-    const [Produto, setProduto] = useState(props.produto)
+    //const [Produto, setProduto] = useState(props.produto)
 
     function adicionarProdutoCarrinho(event){
         var carrinho = JSON.parse(window.localStorage.getItem("carrinho"))
@@ -24,7 +24,7 @@ export default function Produto(props){
         window.localStorage.setItem("carrinho", JSON.stringify(carrinho))
     }
 
-    return(
+    /*return(
         <ProdutoStyled>
             <WallPaperProduct backgroundImage={Produto.imageUrl}>
                 <div onClick={() => router.back()}><FeatherIcons icon="chevron-left"/></div>
@@ -56,10 +56,11 @@ export default function Produto(props){
                 <button>Adicionar</button>
             </Bar>
         </ProdutoStyled>
-    )
+    )*/
+    return <></>
 }
 
-export const getStaticProps = async (ctx) => {
+/*export const getStaticProps = async (ctx) => {
     var response = await axios.post(process.env.LINK_API +'/produto', {produto: ctx.params.produto})
   
     const produto = response.data
@@ -69,9 +70,9 @@ export const getStaticProps = async (ctx) => {
         produto: produto
       }
     }
-}
+}*/
 
-export const getStaticPaths = async () => {
+/*export const getStaticPaths = async () => {
 
     var response = await axios.post(process.env.LINK_API +'/produto')
   
@@ -82,4 +83,4 @@ export const getStaticPaths = async () => {
     }))
 
     return {paths, fallback: false}
-}
+}*/
