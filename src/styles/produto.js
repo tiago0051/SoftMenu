@@ -72,7 +72,8 @@ export const Varicao = styled.div`
     input {
         position: absolute;
         right: 10px;
-        top: 20px;
+        top: calc(50% - 10px);
+        bottom: 0;
         height: 20px;
         width: 20px;
     }
