@@ -43,20 +43,17 @@ export default function Produto(props){
         }
     }
 
-    useEffect(() => {
-        if(VariaçãoSelecionada.Nome != ""){
-            console.log(VariaçãoSelecionada)
-        }
-    }, [VariaçãoSelecionada])
-
     function adicionarProdutoCarrinho(event){
-        var carrinho = JSON.parse(window.localStorage.getItem("carrinho"))
+        if(!(ShowVariações && VariaçãoSelecionada.Nome == '')){
+            var carrinho = JSON.parse(window.localStorage.getItem("carrinho"))
 
-        if(!carrinho) carrinho = []
-
-        carrinho.push({nome: produto[0], preço: produto[1], Variações: {}})
-
-        window.localStorage.setItem("carrinho", JSON.stringify(carrinho))
+            if(!carrinho) carrinho = []
+    
+            carrinho.push({nome: Produto.nome, preço: Produto.preço, Variações: VariaçãoSelecionada})
+    
+            window.localStorage.setItem("carrinho", JSON.stringify(carrinho))
+            router.back()
+        }
     }
 
     return(
@@ -94,11 +91,11 @@ export default function Produto(props){
             <br/>
             <br/>
 
-            <Bar>
+            <Bar Disabled={ShowVariações && VariaçãoSelecionada.Nome == ''}>
                 <div id="quantidade">
-                    <button onClick={() => {Quantidade > 1 ? setQuantidade(Quantidade-1) : setQuantidade(1)}}>-</button>
+                    <button onClick={() => {Quantidade > 1 ? setQuantidade(Quantidade-1) : setQuantidade(1)}}><FeatherIcons icon="minus"/></button>
                     <span>{Quantidade}</span>
-                    <button onClick={() => setQuantidade(Quantidade+ 1)}>+</button>
+                    <button onClick={() => setQuantidade(Quantidade+ 1)}><FeatherIcons icon="plus"/></button>
                 </div>
 
                 <div id="total">
@@ -110,7 +107,7 @@ export default function Produto(props){
                     </span>
                 </div>
 
-                <button>Adicionar</button>
+                <button onClick={adicionarProdutoCarrinho}>Adicionar</button>
             </Bar>
         </ProdutoStyled>
     )

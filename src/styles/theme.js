@@ -18,6 +18,7 @@ export const light = {
         tertiary: '#252833',
         text: 'black',
         text2: 'white',
-        text3: '#CB2929'
+        text3: '#CB2929',
+        textDisabled: 'rgb(250, 250, 250, 0.4)'
     }
 }

@@ -6,6 +6,7 @@ import Router from 'next/router'
 import Perfil from "../components/loja/perfil"
 import Categorias from "../components/loja/categorias"
 import Produtos from '../components/loja/produtos'
+import Carrinho from '../components/loja/carrinho'
 
 export default function Home(props) {
   return (
@@ -23,6 +24,8 @@ export default function Home(props) {
         <Categorias empresa={props.empresa}/>
 
         <Produtos empresa={props.empresa}/>
+
+        <Carrinho/>
       </main>
     </div>
   )

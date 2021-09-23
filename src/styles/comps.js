@@ -227,3 +227,35 @@ export const Bebida = styled.div`
         margin: 0 10px;
     }
 `
+
+export const CarrinhoComponent = styled.div`
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background-color: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.text2};
+
+    div {
+        position: relative;
+    }
+
+    div::before{
+        content: ${props => {console.log(props.Quantidade); return(props.Quantidade ? props.Quantidade : "0")}};
+        display: ${props => props.Quantidade > 0 ? "block" : "none"};
+        height: 20px;
+        width: 20px;
+        background-color: ${props => props.theme.colors.text2};
+        position: absolute;
+        right: -20px;
+        top: -10px;
+        border-radius: 200%;
+        display: flex;
+        justify-content: center;
+        color: ${props => props.theme.colors.text};
+    }
+`

@@ -89,13 +89,18 @@ export const Bar = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 10px;
+    padding: 20px;
 
     #quantidade button{
         background: none;
         border: none;
         color: ${props => props.theme.colors.text2};
         font-size: 15px;
+    }
+
+    #quantidade button svg {
+        width: 20px;
+        height: 15px;
     }
 
     #quantidade span {
@@ -108,7 +113,7 @@ export const Bar = styled.div`
     }
 
     button {
-        color: ${props => props.theme.colors.text2};
+        color: ${props => props.Disabled ? props.theme.colors.textDisabled : props.theme.colors.text2};
         background: none;
         border: none;
     }
