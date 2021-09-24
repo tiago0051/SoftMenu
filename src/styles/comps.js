@@ -236,7 +236,8 @@ export const CarrinhoComponent = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 20px 40px;
+    align-items: center;
+    padding: 15px 40px;
     background-color: ${props => props.theme.colors.primary};
     color: ${props => props.theme.colors.text2};
 
@@ -245,14 +246,14 @@ export const CarrinhoComponent = styled.div`
     }
 
     div::before{
-        content: ${props => {console.log(props.Quantidade); return(props.Quantidade ? props.Quantidade : "0")}};
+        content: '${props => props.Quantidade}';
         display: ${props => props.Quantidade > 0 ? "block" : "none"};
-        height: 20px;
-        width: 20px;
+        height: 18px;
+        width: 18px;
         background-color: ${props => props.theme.colors.text2};
         position: absolute;
-        right: -20px;
-        top: -10px;
+        right: -15px;
+        top: -8px;
         border-radius: 200%;
         display: flex;
         justify-content: center;

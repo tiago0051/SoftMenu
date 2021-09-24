@@ -1,16 +1,61 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import FeatherIcons from 'feather-icons-react'
+import { useRouter } from "next/router"
 
 import { CarrinhoStyled, Header, Produtos, Produto, Finalizar } from "../../styles/carrinho"
 
 export default function Carrinho(props){
+    const router = useRouter()
 
-    const [quantidade, setQuantidade] = useState(0)
+    const [Carrinho, setCarrinho] = useState([])
+    const [PreçoTotal, setPreçoTotal] = useState(0)
+
+    useEffect(() => {
+        var carrinho = JSON.parse(window.localStorage.getItem("carrinho"))
+
+        if(!carrinho) carrinho = []
+
+        setCarrinho(carrinho)
+    }, [])
+
+    useEffect(() => {
+        var total = 0;
+
+        Carrinho.forEach(item => {
+            total += item.preço
+        })
+
+        setPreçoTotal(total)
+    }, [Carrinho])
+
+    function removeItemCarrinho(event){
+        var nomeItem;
+        
+        try {
+            nomeItem = event.target.parentElement.children[0].children[0].textContent
+        } catch {
+            nomeItem = event.target.parentElement.parentElement.parentElement.children[0].children[0].textContent
+        }
+        
+        var carrinho = []
+
+        carrinho = JSON.parse(window.localStorage.getItem("carrinho"))
+
+        if(!carrinho) carrinho = []
+
+        var index = carrinho.findIndex((item) => item.nome == nomeItem)
+
+        carrinho.splice(index, 1)
+
+        window.localStorage.setItem("carrinho", JSON.stringify(carrinho))
+
+        setCarrinho(carrinho)
+    }
 
     return(
         <CarrinhoStyled>
             <Header>
-                <FeatherIcons icon="chevron-left"/>
+                <FeatherIcons icon="chevron-left" onClick={() => router.back()}/>
                 
                 <div>
                     <h1>{props.empresa.nome}</h1>
@@ -21,28 +66,31 @@ export default function Carrinho(props){
             <Produtos>
                 <div id="title">
                     <FeatherIcons icon="shopping-cart"/>
-                    <h2>Meu Carrinho ({quantidade})</h2>
+                    <h2>Meu Carrinho ({Carrinho.length})</h2>
                 </div>
-                
-                <Produto>
-                    <div id="informacoes">
-                        <h3>Pizza Calabresa</h3>
-                        <p>Tamanho grande</p>
-                        <span>R$ 38,50</span>
-                    </div>
 
-                    <img src="https://softmenus.s3.sa-east-1.amazonaws.com/Empresas/pizza.jpeg"/>
-                </Produto>
-
-                <Produto>
-                    <div id="informacoes">
-                        <h3>Pizza Calabresa</h3>
-                        <p>Tamanho grande</p>
-                        <span>R$ 38,50</span>
-                    </div>
-
-                    <img src="https://softmenus.s3.sa-east-1.amazonaws.com/Empresas/pizza.jpeg"/>
-                </Produto>
+                {
+                    Carrinho.map(item => {
+                        return(
+                            <Produto>
+                                <div id="informacoes">
+                                    <h3>{item.nome}</h3>
+                                    <p>{item.Variações.Nome}</p>
+                                    <span>
+                                        {
+                                            item.preço.toLocaleString('pt-BR', {
+                                                style: 'currency',
+                                                currency: 'BRL',
+                                            })
+                                        }
+                                    </span>
+                                </div>
+            
+                                <FeatherIcons icon ="x" onClick={removeItemCarrinho}/>
+                            </Produto>
+                        )
+                    })
+                }
             </Produtos>
 
             <Finalizar>
@@ -56,7 +104,13 @@ export default function Carrinho(props){
                 <input type="text" id="FormaPagamento" name="FormaPagamento" placeholder="Forma de pagamento: Cartão de Débito"/>
 
                 <div id="button">
-                    <span>Total: R$ 70,50</span>
+                    <span>Total: {
+                        PreçoTotal.toLocaleString('pt-BR', {
+                            style: 'currency',
+                            currency: 'BRL',
+                        })
+                    
+                    }</span>
                     <button>Finalizar</button>
                 </div>
             </Finalizar>
