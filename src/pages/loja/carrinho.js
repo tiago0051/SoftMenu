@@ -7,10 +7,14 @@ import { CarrinhoStyled, Header, Produtos, Produto, Finalizar } from "../../styl
 export default function Carrinho(props){
     const router = useRouter()
 
+    const [Empresa, setEmpresa] = useState({})
+
     const [Carrinho, setCarrinho] = useState([])
     const [PreçoTotal, setPreçoTotal] = useState(0)
 
     useEffect(() => {
+        setEmpresa(JSON.parse(window.localStorage.getItem("empresa")))
+
         var carrinho = JSON.parse(window.localStorage.getItem("carrinho"))
 
         if(!carrinho) carrinho = []
@@ -26,6 +30,9 @@ export default function Carrinho(props){
         })
 
         setPreçoTotal(total)
+
+        if(Carrinho.length == 0)
+            router.push("/")
     }, [Carrinho])
 
     function removeItemCarrinho(event){
@@ -58,8 +65,8 @@ export default function Carrinho(props){
                 <FeatherIcons icon="chevron-left" onClick={() => router.back()}/>
                 
                 <div>
-                    <h1>{props.empresa.nome}</h1>
-                    <p>{props.empresa.descricao}</p>
+                    <h1>{Empresa.nome}</h1>
+                    <p>{Empresa.descricao}</p>
                 </div>
             </Header>
 
@@ -117,24 +124,3 @@ export default function Carrinho(props){
         </CarrinhoStyled>
     )
 }
-
-export const getStaticProps = async () => {
-    return {
-      props: {
-        empresa: {
-          nome: "Máfia Burguer",
-          descricao: "Hamburgueria Gurme",
-          status: "ABERTO",
-          urls: {
-            background: "https://softmenus.s3.sa-east-1.amazonaws.com/Empresas/background.jpeg",
-            avatar: "https://softmenus.s3.sa-east-1.amazonaws.com/Empresas/mafiaburguer.jpg"
-          },
-          produtos: {
-            nome: "Pizza Calabresa",
-            imagem: ""
-          }
-        }
-      },
-      revalidate: 60
-    }
-  }

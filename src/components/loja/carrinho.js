@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import {CarrinhoComponent} from  '../../styles/comps'
 import FeatherIcons from 'feather-icons-react'
-import Router from 'next/router'
+import Link from 'next/link'
 
 export default function Carrinho(){
 
@@ -33,7 +33,7 @@ export default function Carrinho(){
             {
                 ShowCarrinho ? 
                 (
-                    <CarrinhoComponent Quantidade={Carrinho.length} onClick={() => Router.push("/loja/carrinho")}>
+                    <Link href="/loja/carrinho"><CarrinhoComponent Quantidade={Carrinho.length}>
                         <span>Total: {
                                 PreçoTotal.toLocaleString('pt-BR', {
                                     style: 'currency',
@@ -42,7 +42,7 @@ export default function Carrinho(){
                             }
                         </span>
                         <div><FeatherIcons icon="shopping-cart"/></div>
-                    </CarrinhoComponent>
+                    </CarrinhoComponent></Link>
                 ) :
                 (
                     <></>

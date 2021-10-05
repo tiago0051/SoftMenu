@@ -8,19 +8,34 @@ import { ProdutoStyled, WallPaperProduct, Titulo, Bar, Varicao, VaricoesStyled }
 export default function Produto(props){
     const router = useRouter()
 
-    const [Produto, setProduto] = useState(props.produto)
-    const [ValorTotal, setValorTotal] = useState(props.produto.preço)
+    const [Produto, setProduto] = useState({imageUrl: ""})
+    const [ValorTotal, setValorTotal] = useState(0)
     const [Quantidade, setQuantidade] = useState(1)
 
-    const [Variações, SetVariações] = useState(props.produto.variações)
+    const [Variações, SetVariações] = useState([])
     const [ShowVariações, setShowVariações] = useState(false)
 
     useEffect(() => {
-        setShowVariações(Variações[0] != undefined)
+        const produto = JSON.parse(window.localStorage.getItem("empresa")).produtos.find(produto => produto.nome == router.query.produto)
+        
+        if(!produto){
+            router.push("/")
+        }else{
+            setProduto(produto)
+        }
+    }, [])
+
+    useEffect(() => {
+        setValorTotal(Produto.preço ? Produto.preço : 0)
+        SetVariações(Produto.variações ? Produto.variações : [])
+    }, [Produto])
+
+    useEffect(() => {
+        setShowVariações(Variações.length > 0)
     }, [Variações])
 
     useEffect(() => {
-        setValorTotal(props.produto.preço * Quantidade)
+        setValorTotal(Produto.preço * Quantidade)
     }, [Quantidade])
 
     const [VariaçãoSelecionada, setVariaçãoSelecionada] = useState({Nome: ''})
@@ -116,10 +131,12 @@ export default function Produto(props){
     )
 }
 
-export const getStaticProps = async (ctx) => {
-    var response = await axios.post(process.env.LINK_API +'/produto', {produto: ctx.params.produto})
+/*export const getStaticProps = async (ctx) => {
+    //var response = await axios.post(process.env.LINK_API +'/produto', {produto: ctx.params.produto})
   
-    const produto = response.data
+    //const produto = response.data
+
+    const produto = JSON.parse(window.localStorage.getItem("empresa").produtos.find(produto => produto.nome == ctx.params.produto))
   
     return {
       props: {
@@ -139,4 +156,4 @@ export const getStaticPaths = async () => {
     }))
 
     return {paths, fallback: false}
-}
+}*/
