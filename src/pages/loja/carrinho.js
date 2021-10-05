@@ -13,6 +13,10 @@ export default function Carrinho(props){
     const [Carrinho, setCarrinho] = useState([])
     const [PreçoTotal, setPreçoTotal] = useState(0)
 
+    const [FormaPagamento, setFormaPagamento] = useState("Dinheiro")
+    const [Endereço, setEndereço] = useState({})
+    const [FormaEntrega, setFormaEntrega] = useState("Entrega")
+
     useEffect(() => {
         setEmpresa(JSON.parse(window.localStorage.getItem("empresa")))
 
@@ -61,6 +65,84 @@ export default function Carrinho(props){
         setCarrinho(carrinho)
     }
 
+    function enviarMensagem(){
+        var mensagem = ""
+        
+        mensagem += "SoftMenus"
+
+        for(var i = 0; i < 100; i++)mensagem += "%20"
+
+        mensagem += "-"
+
+        for(var i = 0; i < 100; i++)mensagem += "%20"
+        
+        mensagem += "Items:"
+
+        for(var i = 0; i < 100; i++)mensagem += "%20"
+
+        mensagem += "-"
+
+        for(var i = 0; i < 100; i++)mensagem += "%20"
+
+        Carrinho.map(item => {
+            mensagem += item.nome.toUpperCase()
+
+            for(var i = item.nome.length; i < 20; i++)mensagem += "%20"
+
+            mensagem += item.preço.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+            })
+
+            for(var i = 0; i < 100; i++)mensagem += "%20"
+
+            mensagem += "-"
+
+            for(var i = 0; i < 10; i++)mensagem += "%20"
+
+            mensagem += item.Variações.Nome
+
+            for(var i = 0; i < 100; i++)mensagem += "%20"
+
+            mensagem += "-"
+
+            for(var i = 0; i < 100; i++)mensagem += "%20"
+        })
+
+        mensagem += "Total: " + PreçoTotal.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+        })
+
+        for(var i = 0; i < 100; i++)mensagem += "%20"
+
+        mensagem += "-"
+
+        for(var i = 0; i < 100; i++)mensagem += "%20"
+
+        mensagem += "Endereço: " + Endereço.formatted_address
+
+        for(var i = 0; i < 100; i++)mensagem += "%20"
+
+        mensagem += "-"
+
+        for(var i = 0; i < 100; i++)mensagem += "%20"
+
+        mensagem += "Forma de Pagamento: " + FormaPagamento
+
+        for(var i = 0; i < 100; i++)mensagem += "%20"
+
+        mensagem += "-"
+
+        for(var i = 0; i < 100; i++)mensagem += "%20"
+
+        mensagem += "Forma de entrega: " + FormaEntrega
+
+        for(var i = 0; i < 100; i++)mensagem += "%20"
+
+        router.push("whatsapp://send/?phone=+55021974481023&text=" + mensagem)
+    }
+
     return(
         <CarrinhoStyled>
             <Header>
@@ -74,11 +156,11 @@ export default function Carrinho(props){
 
             <Finalizar>
                 <div id="formaEntrega">
-                    <label htmlFor="FormaEntrega">Forma de Entrega : Delivery</label>
+                    <label htmlFor="FormaEntrega" onChange={(event) => setFormaEntrega(event.target.value)}>Forma de Entrega : Delivery</label>
 
                     <select name="FormaEntrega" id="FormaEntrega">
-                        <option value="retirar">Retirar</option>
                         <option value="entrega">Entrega</option>
+                        <option value="retirar">Retirar</option>
                     </select>
                 </div>
 
@@ -87,7 +169,7 @@ export default function Carrinho(props){
                 <Autocomplete
                 apiKey={"AIzaSyA8g0yxm_HcAIJ9hDIy9pZiRhGUqxrmmNc"}
                 onPlaceSelected={(place) => {
-                    console.log(place);
+                    setEndereço(place)
                 }}
                 options={{
                     types: ["geocode", "establishment"],
@@ -96,7 +178,7 @@ export default function Carrinho(props){
                 />
 
                 <label htmlFor="FormaPagamento">Forma de Pagamento</label>
-                <select name="FormaPagamento" id="FormaPagamento">
+                <select name="FormaPagamento" id="FormaPagamento" onChange={(event) => setFormaPagamento(event.target.value)}>
                         <option value="Dinheiro">Dinheiro</option>
                         <option value="Cartão de Debito">Cartão de Debito</option>
                         <option value="Cartão de Credito">Cartão de Credito</option>
@@ -111,7 +193,7 @@ export default function Carrinho(props){
                         })
                     
                     }</span>
-                    <button>Finalizar</button>
+                    <button onClick={enviarMensagem}>Finalizar</button>
                 </div>
             </Finalizar>
 
