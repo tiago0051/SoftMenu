@@ -63,10 +63,8 @@ export default function Produto(props){
 
             if(!carrinho) carrinho = []
     
-            for(var i = 0; i < Quantidade; i++){
-                console.log(i)
+            for(var i = 0; i < Quantidade; i++)
                 carrinho.push({nome: Produto.nome, preço: Produto.preço, Variações: VariaçãoSelecionada})
-            }
     
             window.localStorage.setItem("carrinho", JSON.stringify(carrinho))
             router.back()

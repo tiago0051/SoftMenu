@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react"
 import FeatherIcons from 'feather-icons-react'
 import { useRouter } from "next/router"
+import Autocomplete from "react-google-autocomplete";
 
 import { CarrinhoStyled, Header, Produtos, Produto, Finalizar } from "../../styles/carrinho"
 
@@ -71,6 +72,49 @@ export default function Carrinho(props){
                 </div>
             </Header>
 
+            <Finalizar>
+                <div id="formaEntrega">
+                    <label htmlFor="FormaEntrega">Forma de Entrega : Delivery</label>
+
+                    <select name="FormaEntrega" id="FormaEntrega">
+                        <option value="retirar">Retirar</option>
+                        <option value="entrega">Entrega</option>
+                    </select>
+                </div>
+
+
+                <label>Endereço de Entrega</label>
+                <Autocomplete
+                apiKey={"AIzaSyA8g0yxm_HcAIJ9hDIy9pZiRhGUqxrmmNc"}
+                onPlaceSelected={(place) => {
+                    console.log(place);
+                }}
+                options={{
+                    types: ["geocode", "establishment"],
+                    componentRestrictions: { country: "br" },
+                }}
+                />
+
+                <label htmlFor="FormaPagamento">Forma de Pagamento</label>
+                <select name="FormaPagamento" id="FormaPagamento">
+                        <option value="Dinheiro">Dinheiro</option>
+                        <option value="Cartão de Debito">Cartão de Debito</option>
+                        <option value="Cartão de Credito">Cartão de Credito</option>
+                        <option value="Pix">Pix</option>
+                    </select>
+
+                <div id="button">
+                    <span>Total: {
+                        PreçoTotal.toLocaleString('pt-BR', {
+                            style: 'currency',
+                            currency: 'BRL',
+                        })
+                    
+                    }</span>
+                    <button>Finalizar</button>
+                </div>
+            </Finalizar>
+
             <Produtos>
                 <div id="title">
                     <FeatherIcons icon="shopping-cart"/>
@@ -79,6 +123,7 @@ export default function Carrinho(props){
 
                 {
                     Carrinho.map(item => {
+                        
                         return(
                             <Produto>
                                 <div id="informacoes">
@@ -100,28 +145,6 @@ export default function Carrinho(props){
                     })
                 }
             </Produtos>
-
-            <Finalizar>
-                <input type="text" id="FormaEntrega" name="FormaEntrega" placeholder="Forma de Entrega : Delivery"/>
-
-                <div id="pesquisarEndereco">
-                    <input type="text" id="PesquisarEndereco" name="PesquisarEndereco" placeholder="Pesquisar Endereço"/>
-                    <FeatherIcons icon="search"/>
-                </div>
-
-                <input type="text" id="FormaPagamento" name="FormaPagamento" placeholder="Forma de pagamento: Cartão de Débito"/>
-
-                <div id="button">
-                    <span>Total: {
-                        PreçoTotal.toLocaleString('pt-BR', {
-                            style: 'currency',
-                            currency: 'BRL',
-                        })
-                    
-                    }</span>
-                    <button>Finalizar</button>
-                </div>
-            </Finalizar>
         </CarrinhoStyled>
     )
 }

@@ -81,16 +81,29 @@ export const Finalizar = styled.section`
 
     input {
         width: 100%;
-        padding: 5px 10px;
+        padding: 10px 10px;
         background-color: ${props => props.theme.colors.background};
         border: none;
         border-radius: 10px;
         margin-bottom: 10px;
+        font-size: 15px;
     }
 
     input::placeholder{
         color: ${props => props.theme.colors.text3};
         opacity: 0.6;
+    }
+
+    label{
+        color: ${props => props.theme.colors.text2};
+    }
+
+    select {
+        border-radius: 10px;
+        font-size: 15px;
+        padding: 10px 10px;
+        width: 100%;
+        margin-bottom: 10px;
     }
 
     #pesquisarEndereco {
