@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react"
 import FeatherIcons from "feather-icons-react"
 import { useRouter } from "next/router"
-import axios from "axios"
 
 import { ProdutoStyled, WallPaperProduct, Titulo, Bar, Varicao, VaricoesStyled } from "../../../styles/produto"
 
@@ -130,30 +129,3 @@ export default function Produto(props){
         </ProdutoStyled>
     )
 }
-
-/*export const getStaticProps = async (ctx) => {
-    //var response = await axios.post(process.env.LINK_API +'/produto', {produto: ctx.params.produto})
-  
-    //const produto = response.data
-
-    const produto = JSON.parse(window.localStorage.getItem("empresa").produtos.find(produto => produto.nome == ctx.params.produto))
-  
-    return {
-      props: {
-        produto: produto
-      }
-    }
-}
-
-export const getStaticPaths = async () => {
-
-    var response = await axios.post(process.env.LINK_API +'/produto')
-  
-    const produtos = response.data
-
-    const paths = produtos.map(produto => ({
-        params: {produto: produto.nome}
-    }))
-
-    return {paths, fallback: false}
-}*/

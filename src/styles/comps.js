@@ -179,6 +179,8 @@ export const BebidasStyled = styled.section`
         padding: 10px;
     }
 
+    padding-bottom: 60px;
+
 `
 
 export const Bebida = styled.div`

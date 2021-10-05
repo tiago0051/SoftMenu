@@ -19,7 +19,11 @@ export default function Carrinho(props){
 
         if(!carrinho) carrinho = []
 
-        setCarrinho(carrinho)
+        if(carrinho.length == 0){
+            router.push("/")
+        }else{
+            setCarrinho(carrinho)
+        }
     }, [])
 
     useEffect(() => {
@@ -30,9 +34,6 @@ export default function Carrinho(props){
         })
 
         setPreçoTotal(total)
-
-        if(Carrinho.length == 0)
-            router.push("/")
     }, [Carrinho])
 
     function removeItemCarrinho(event){
