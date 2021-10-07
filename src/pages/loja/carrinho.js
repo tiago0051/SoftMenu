@@ -16,6 +16,7 @@ export default function Carrinho(props){
     const [FormaPagamento, setFormaPagamento] = useState("Dinheiro")
     const [Endereço, setEndereço] = useState({})
     const [FormaEntrega, setFormaEntrega] = useState("Entrega")
+    const [ComplementoEndereço, setComplementoEndereço] = useState("")
 
     useEffect(() => {
         setEmpresa(JSON.parse(window.localStorage.getItem("empresa")))
@@ -68,79 +69,60 @@ export default function Carrinho(props){
     function enviarMensagem(){
         var mensagem = ""
         
-        mensagem += "SoftMenus"
+        mensagem += "SoftMenus" + finalizarLinha()
 
-        for(var i = 0; i < 100; i++)mensagem += "%20"
-
-        mensagem += "-"
-
-        for(var i = 0; i < 100; i++)mensagem += "%20"
+        mensagem += "-" + finalizarLinha()
         
-        mensagem += "Items:"
+        mensagem += "Items:" + finalizarLinha()
 
-        for(var i = 0; i < 100; i++)mensagem += "%20"
-
-        mensagem += "-"
-
-        for(var i = 0; i < 100; i++)mensagem += "%20"
+        mensagem += "-" + finalizarLinha()
 
         Carrinho.map(item => {
-            mensagem += item.nome.toUpperCase()
-
-            for(var i = item.nome.length; i < 20; i++)mensagem += "%20"
+            mensagem += item.nome.toUpperCase() + finalizarLinha()
 
             mensagem += item.preço.toLocaleString('pt-BR', {
                 style: 'currency',
                 currency: 'BRL',
-            })
+            }) + finalizarLinha()
 
-            for(var i = 0; i < 100; i++)mensagem += "%20"
+            mensagem += "-" + finalizarLinha()
 
-            mensagem += "-"
+            mensagem += item.Variações.Nome + finalizarLinha()
 
-            for(var i = 0; i < 10; i++)mensagem += "%20"
-
-            mensagem += item.Variações.Nome
-
-            for(var i = 0; i < 100; i++)mensagem += "%20"
-
-            mensagem += "-"
-
-            for(var i = 0; i < 100; i++)mensagem += "%20"
+            mensagem += "-" + finalizarLinha()
         })
 
         mensagem += "Total: " + PreçoTotal.toLocaleString('pt-BR', {
             style: 'currency',
             currency: 'BRL',
-        })
+        }) + finalizarLinha()
 
-        for(var i = 0; i < 100; i++)mensagem += "%20"
+        mensagem += "-" + finalizarLinha()
 
-        mensagem += "-"
+        mensagem += "Endereço: " + Endereço.formatted_address + finalizarLinha()
 
-        for(var i = 0; i < 100; i++)mensagem += "%20"
+        mensagem += "Complemento do Endereço: " + ComplementoEndereço + finalizarLinha()
 
-        mensagem += "Endereço: " + Endereço.formatted_address
+        mensagem += "-" + finalizarLinha()
 
-        for(var i = 0; i < 100; i++)mensagem += "%20"
+        mensagem += "Forma de Pagamento: " + FormaPagamento + finalizarLinha()
 
-        mensagem += "-"
+        mensagem += "-" + finalizarLinha()
 
-        for(var i = 0; i < 100; i++)mensagem += "%20"
-
-        mensagem += "Forma de Pagamento: " + FormaPagamento
-
-        for(var i = 0; i < 100; i++)mensagem += "%20"
-
-        mensagem += "-"
-
-        for(var i = 0; i < 100; i++)mensagem += "%20"
-
-        mensagem += "Forma de entrega: " + FormaEntrega
-
-        for(var i = 0; i < 100; i++)mensagem += "%20"
+        mensagem += "Forma de entrega: " + FormaEntrega + finalizarLinha()
 
         router.push("whatsapp://send/?phone=+55021974481023&text=" + mensagem)
+
+        window.localStorage.removeItem("carrinho")
+
+        router.push("/")
+    }
+
+    function finalizarLinha(){
+        var mensagem = ""
+        for(var i = 0; i < 100; i++)mensagem += "%20"
+
+        return mensagem
     }
 
     return(
@@ -177,13 +159,16 @@ export default function Carrinho(props){
                 }}
                 />
 
+                <label htmlFor="Complemento">Complemento do Endereço</label>
+                <input name="Complemento" type="text" onChange={(event) => {console.log(event.target.value); setComplementoEndereço(event.target.value);}} />
+
                 <label htmlFor="FormaPagamento">Forma de Pagamento</label>
                 <select name="FormaPagamento" id="FormaPagamento" onChange={(event) => setFormaPagamento(event.target.value)}>
-                        <option value="Dinheiro">Dinheiro</option>
-                        <option value="Cartão de Debito">Cartão de Debito</option>
-                        <option value="Cartão de Credito">Cartão de Credito</option>
-                        <option value="Pix">Pix</option>
-                    </select>
+                    <option value="Dinheiro">Dinheiro</option>
+                    <option value="Cartão de Debito">Cartão de Debito</option>
+                    <option value="Cartão de Credito">Cartão de Credito</option>
+                    <option value="Pix">Pix</option>
+                </select>
 
                 <div id="button">
                     <span>Total: {
