@@ -3,7 +3,6 @@ import FeatherIcons from "feather-icons-react"
 import { useRouter } from "next/router"
 
 import { ProdutoStyled, WallPaperProduct, Titulo, Bar, Varicao, VaricoesStyled } from "../../../styles/produto"
-import { Head } from "next/document"
 
 export default function Produto(props){
     const router = useRouter()
@@ -74,10 +73,6 @@ export default function Produto(props){
 
     return(
         <ProdutoStyled>
-            <Head>
-                <tittle>{Produto.nome}</tittle>
-            </Head>
-
             <WallPaperProduct backgroundImage={Produto.imageUrl}>
                 <div onClick={() => router.back()}><FeatherIcons icon="chevron-left"/></div>
             </WallPaperProduct>
