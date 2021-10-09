@@ -101,7 +101,6 @@ export const CategoriasStyled = styled.section`
     margin-top: 10px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
     overflow-x: scroll;
     flex-shrink: 0;
     padding: 5px;
@@ -118,7 +117,7 @@ export const CategoriasStyled = styled.section`
 
 export const Categoria = styled.a`
     height: 22%;
-    width: 22%;
+    margin: 0 3%;
     text-align: center;
     flex-shrink: 0;
     position: relative;
