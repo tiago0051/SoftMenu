@@ -10,6 +10,7 @@ import { useEffect } from 'react'
 export default function Home(props) {
 
   useEffect(() => {
+    //console.log(props.empresa)
     window.localStorage.setItem("empresa", JSON.stringify(props.empresa))
   }, [])
 
@@ -35,8 +36,8 @@ export default function Home(props) {
   )
 }
 
-export const getStaticProps = async (ctx) => {
-  var response = await axios.post(process.env.LINK_API +'/empresa')
+export const getServerSideProps = async (ctx) => {
+  var response = await axios.post(ctx.req.headers.referer + '/api/empresa')
 
   const empresa = response.data
 
