@@ -11,7 +11,6 @@ import { useEffect } from 'react'
 export default function Home(props) {
 
   useEffect(() => {
-    //console.log(props.empresa)
     window.localStorage.setItem("empresa", JSON.stringify(props.empresa))
   }, [])
 
