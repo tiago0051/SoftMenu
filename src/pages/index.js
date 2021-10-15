@@ -39,7 +39,7 @@ export default function Home(props) {
 export const getServerSideProps = async (ctx) => {
   const { origin } = absoluteUrl(ctx.req, "localhost:3000");
 
-  var response = await axios.post(origin + '/api/empresa')
+  var response = await axios.get(origin + '/api/empresa')
 
   const empresa = response.data
 

@@ -53,4 +53,5 @@ export const LogarButton = styled.button`
     background-color: ${props => props.theme.colors.primary};
     box-shadow: 0px 1px 10px 5px rgb(0, 0, 0, 0.2);
     color: ${props => props.theme.colors.text2};
+    cursor: pointer;
 `
