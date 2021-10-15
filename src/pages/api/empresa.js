@@ -9,9 +9,6 @@ export default async function handler(req, res) {
   if(req.headers.host == 'rocks.softmenus.com.br')
     user = "rocks"
 
-  if(req.headers.host == 'mafiaburguer.softmenus.com.br')
-    user = "mafia-burguer"
-
   const DB = await db()
   const empresa = await DB.collection("empresas").findOne({user: user})
 

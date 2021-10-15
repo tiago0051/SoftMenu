@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-import { LoginStyled , UsuárioInput, SenhaInput, LogarButton} from "../../styles/dashbaord"
+import { LoginStyled , UsuárioInput, SenhaInput, LogarButton} from "../../styles/dashboard"
 
 export default function Login(){
 
