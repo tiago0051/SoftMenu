@@ -3,9 +3,13 @@ import { ObjectId } from "mongodb";
 import db from "../services/db"
 
 export default class UsuárioModel{
-    constructor(_id, UsuárioCliente){
+    constructor(_id, UsuárioCliente, Empresa, EmailCliente, NomeCliente, TelCliente){
         this._id = _id
         this.UsuárioCliente = UsuárioCliente
+        this.Empresa = Empresa
+        this.Email = EmailCliente
+        this.Nome = NomeCliente
+        this.Tel = TelCliente
     }
 }
 
@@ -14,14 +18,14 @@ export async function Logar(identificação, senha){
 
     const cliente = await DB.collection("usuario").findOne({UsuárioCliente: identificação})
 
-    const {_id, SenhaCliente: SenhaClienteInDB, UsuárioCliente:  UsuárioClienteInDb} = cliente
+    const {_id, SenhaCliente: SenhaClienteInDB, UsuárioCliente:  UsuárioClienteInDb, Empresa, EmailCliente, NomeCliente, TelCliente} = cliente
 
     if(SenhaClienteInDB && UsuárioClienteInDb && UsuárioClienteInDb == identificação){
         var result = await compareEncrypt(SenhaClienteInDB, senha)
     
         if(result){
             var {UsuárioCliente} = cliente
-            return new UsuárioModel(_id, UsuárioCliente)
+            return new UsuárioModel(_id, UsuárioCliente, Empresa, EmailCliente, NomeCliente, TelCliente)
         }else{
             return null
         }
@@ -36,8 +40,8 @@ export async function getUsuárioById(_id){
     const cliente = await DB.collection("usuario").findOne({_id: ObjectId(_id)})
 
     if(cliente){
-        var {UsuárioCliente, NomeCliente, TelCliente, EmailCliente, NomeEmpresa, IdServiço} = cliente
-        return new UsuárioModel(_id, UsuárioCliente, NomeCliente, TelCliente, EmailCliente, NomeEmpresa, IdServiço)
+        var {_id, UsuárioCliente, Empresa, EmailCliente, NomeCliente, TelCliente} = cliente
+        return new UsuárioModel(_id, UsuárioCliente, Empresa, EmailCliente, NomeCliente, TelCliente)
     }else{
         return null
     }

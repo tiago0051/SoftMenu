@@ -1,8 +1,9 @@
 import { useState, useContext, useEffect } from "react";
+import { parseCookies } from 'nookies'
 
 import {AuthContext} from "../../contexts/AuthContext";
 
-import { LoginStyled , UsuárioInput, SenhaInput, LogarButton} from "../../styles/dashboard"
+import { LoginStyled , LoginInput, LogarButton} from "../../styles/dashboard"
 
 export default function Login(){
     const {signIn} = useContext(AuthContext)
@@ -25,11 +26,28 @@ export default function Login(){
             <form onSubmit={submitForm}>
                 <img src="/Logo-Completa-Branco.svg" alt="Logo SoftMenus"/>
                 <span>{Notificação}</span>
-                <UsuárioInput type="text" placeholder="Usuário (CPF / CNPJ)" onChange={event => setUsuário(event.target.value)}/>
-                <SenhaInput type="password" placeholder="Senha" onChange={event => setSenha(event.target.value)}/>
+                <LoginInput type="text" placeholder="Usuário (CPF / CNPJ)" onChange={event => setUsuário(event.target.value)}/>
+                <LoginInput type="password" placeholder="Senha" onChange={event => setSenha(event.target.value)}/>
                 <LogarButton type="submit">Logar</LogarButton>
             </form>
 
         </LoginStyled>
     )
+}
+
+export const getServerSideProps = async (ctx) => {
+    const {'nextauth.token': token} = parseCookies(ctx)
+    if(token){
+        return {
+            redirect: {
+                destination: '/dashboard',
+                permanent: false,
+            }
+        }
+    }
+
+
+    return{
+        props: {}
+    }
 }
