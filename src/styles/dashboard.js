@@ -52,39 +52,39 @@ export const DashboardStyled = styled.section`
     background-color: ${props => props.theme.colors.primary};
     height: 100vh;
     width: 100vw;
+`
 
-    nav {
-        width: 15vw;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        box-shadow: 5px 0 10px 1px rgb(0, 0, 0, 0.3);
-        padding: 20px 0;
-        color: ${props => props.theme.colors.text2};
-    }
+export const NavbarStyled = styled.nav`
+    width: 15vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 5px 0 10px 1px rgb(0, 0, 0, 0.3);
+    padding: 20px 0;
+    color: ${props => props.theme.colors.text2};
 
-    nav > div {
+    div {
         width: 60%;
         text-align: center;
     }
 
-    nav > div > img {
+    div > img {
         width: 100%;
         border-radius: 15px;
     }
 
-    nav > div > h1 {
+    div > h1 {
         font-size: 20px;
         margin-top: 10px;
     }
 
-    nav a {
+    li > a {
         text-decoration: none;
         color: ${props => props.theme.colors.text2};
     }
 
-    nav > ul {
+    ul {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -92,15 +92,15 @@ export const DashboardStyled = styled.section`
         margin-top: 80px;
     }
 
-    nav > ul > li {
+    ul > li {
         margin: 15px;
     }
 
-    nav > ul > li > a {
+    ul > li > a {
         font-size: 20px;
     }
 
-    nav > a {
+    #logout {
         cursor: pointer;
         position: absolute;
         bottom: 20px;

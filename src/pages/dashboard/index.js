@@ -1,34 +1,16 @@
-import { useContext, useEffect } from 'react'
-import { parseCookies, destroyCookie } from 'nookies'
-import Link from 'next/link'
-import Router from 'next/router'
+import { useContext } from 'react'
+import { parseCookies } from 'nookies'
 
 import { DashboardStyled } from '../../styles/dashboard'
+import Navbar from '../../components/dashboard/navbar'
 import { AuthContext } from '../../contexts/AuthContext'
 
-export default function Index(ctx){
+export default function Index(){
     const {user} = useContext(AuthContext)
-
-    function logout(){
-        destroyCookie(null, 'nextauth.token')
-        Router.push("/dashboard/login")
-    }
 
     return(
         <DashboardStyled>
-            <nav>
-                <div>
-                    <img src="https://softmenus.s3.sa-east-1.amazonaws.com/Empresas/rocks/perfil/logo.jpg" alt=""/>
-                    <h1>Rock´s</h1>
-                </div>
-
-                <ul>
-                    <li><Link href="/dashboard/perfil">Perfil</Link></li>
-                    <li><Link href="/dashboard/produtos">Produtos</Link></li>
-                </ul>
-
-                <a onClick={logout}>Sair</a>
-            </nav>
+            <Navbar/>
         </DashboardStyled>
     )
 }
