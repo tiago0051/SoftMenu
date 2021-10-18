@@ -1,7 +1,7 @@
 import db from "../../services/db";
 
 export default async function handler(req, res) {
-  var user = ""
+  var user = "rocks"
 
   if(req.headers.host == 'localhost:3000' || req.headers.host =='www.softmenus.com.br' || req.headers.host =='softmenus.com.br')
     user = "rocks"
