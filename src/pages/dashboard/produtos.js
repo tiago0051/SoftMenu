@@ -5,12 +5,12 @@ import { DashboardStyled } from '../../styles/dashboard'
 import Navbar from '../../components/dashboard/navbar'
 import { AuthContext } from '../../contexts/AuthContext'
 
-export default function Produtos(){
-    const {user} = useContext(AuthContext)
+export default function Produtos(props){
+    const {empresa} = useContext(AuthContext)
 
     return(
         <DashboardStyled>
-            <Navbar/>
+            <Navbar nome={empresa ? empresa.nome : ""} avatar={empresa ? empresa.urls.avatar : ""}/>
         </DashboardStyled>
     )
 }
@@ -26,8 +26,7 @@ export const getServerSideProps = async (ctx) => {
         }
     }
 
-
-    return{
+    return {
         props: {}
     }
 }

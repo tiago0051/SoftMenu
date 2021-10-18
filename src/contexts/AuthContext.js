@@ -7,6 +7,7 @@ export const AuthContext = createContext({})
 
 export function AuthProvider({children}){
     const [user, setUser] = useState(null)
+    const [empresa, setEmpresa] = useState(null)
 
     const isAuthenticate = !!user;
 
@@ -17,9 +18,12 @@ export function AuthProvider({children}){
             try{
                 axios.post('/api/dashboard/userInformation', {token}).then((response) => {
                     if(response.data.isLogged){
-                       setUser(response.data.usuário)
+                        console.log(response.data.usuário)
+                        setUser(response.data.usuário)
+                        setEmpresa(response.data.empresa)
                     }else{
                         setUser({})
+                        setEmpresa({})
                         destroyCookie(undefined, 'nextauth.token', {
                             path: '/',
                         })
@@ -28,6 +32,7 @@ export function AuthProvider({children}){
                 })
             }catch{
                 setUser({})
+                setEmpresa({})
                 destroyCookie(undefined, 'nextauth.token', {
                     path: '/',
                 })
@@ -46,8 +51,8 @@ export function AuthProvider({children}){
                     })
     
                     setUser(response.data.usuário)
+                    setEmpresa(response.data.empresa)
 
-                    console.log(response.data.usuário)
                     resolve(true)
                     Router.push('/dashboard/')
                 }else if(isAuthenticate)
@@ -62,7 +67,7 @@ export function AuthProvider({children}){
     }
 
     return(
-        <AuthContext.Provider value={{isAuthenticate, user, signIn}}>
+        <AuthContext.Provider value={{isAuthenticate, user, empresa, signIn}}>
             {children}
         </AuthContext.Provider>
     )

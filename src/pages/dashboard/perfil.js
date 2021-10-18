@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { parseCookies } from 'nookies'
 
 import { DashboardStyled } from '../../styles/dashboard'
@@ -6,11 +6,11 @@ import Navbar from '../../components/dashboard/navbar'
 import { AuthContext } from '../../contexts/AuthContext'
 
 export default function Perfil(){
-    const {user} = useContext(AuthContext)
+    const {empresa} = useContext(AuthContext)
 
     return(
         <DashboardStyled>
-            <Navbar/>
+            <Navbar nome={empresa ? empresa.nome : ""} avatar={empresa ? empresa.urls.avatar : ""}/>
         </DashboardStyled>
     )
 }

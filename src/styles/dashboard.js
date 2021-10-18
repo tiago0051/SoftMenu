@@ -18,15 +18,17 @@ export const LoginStyled = styled.section`
 `
 
 export const LoginInput = styled.input`
+    background: none;
     width: 60%;
     font-size: 20px;
     padding: 10px 20px;
-    border-radius: 7px;
     border: 0;
+    border-bottom: 3px solid ${props => props.theme.colors.text2};
+    color: ${props => props.theme.colors.text2};
     margin-top: 50px;
 
     ::placeholder{
-        text-align: center;
+        color: rgb(250,250,250, 0.3);
     }
 `
 

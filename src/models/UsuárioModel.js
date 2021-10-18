@@ -10,6 +10,14 @@ export default class UsuárioModel{
         this.Email = EmailCliente
         this.Nome = NomeCliente
         this.Tel = TelCliente
+
+        this.getEmpresa = async () => {
+            const DB = await db()
+
+            const Empresa = await DB.collection("empresas").findOne({_id: ObjectId(this.Empresa)})
+
+            return Empresa
+        }
     }
 }
 

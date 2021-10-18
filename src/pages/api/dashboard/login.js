@@ -16,7 +16,9 @@ export default async (req, res) => {
       expiresIn: 60 * 8 // expires in 5min
     });
 
-    res.json({isLogged: true, token, usuário: Usuário})
+    const Empresa = await Usuário.getEmpresa()
+
+    res.json({isLogged: true, token, usuário: Usuário, empresa: Empresa})
   }else{
     res.statusCode = 401
     res.json({isLogged: false})

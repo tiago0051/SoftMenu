@@ -4,18 +4,22 @@ import { destroyCookie } from 'nookies'
 
 import { NavbarStyled } from "../../styles/dashboard"
 
-export default function Navbar(){
+export default function Navbar(props){
 
     function logout(){
-        destroyCookie(null, 'nextauth.token')
+
+        destroyCookie(undefined, 'nextauth.token', {
+            path: '/',
+        })
+
         Router.push("/dashboard/login")
     }
 
     return(
         <NavbarStyled>
             <div>
-                <img src="https://softmenus.s3.sa-east-1.amazonaws.com/Empresas/rocks/perfil/logo.jpg" alt=""/>
-                <h1>Rock´s</h1>
+                <img src={props.avatar == "" ? "https://i.giphy.com/media/3o7bu3XilJ5BOiSGic/giphy.webp" : props.avatar} alt={props.nome}/>
+                <h1>{props.nome == "" ? "Carregando" : props.nome}</h1>
             </div>
 
             <ul>
