@@ -57,12 +57,13 @@ export const DashboardStyled = styled.section`
 `
 
 export const NavbarStyled = styled.nav`
+    background-color: ${props => props.theme.colors.tertiary};
     width: 15vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 5px 0 10px 1px rgb(0, 0, 0, 0.3);
+    box-shadow: 5px 0 10px 1px rgb(0, 0, 0, 0.2);
     padding: 20px 0;
     color: ${props => props.theme.colors.text2};
 
@@ -92,10 +93,13 @@ export const NavbarStyled = styled.nav`
         align-items: center;
         list-style: none;
         margin-top: 80px;
+        width: 100%;
     }
 
     ul > li {
         margin: 15px;
+        width: 100%;
+        text-align: center;
     }
 
     ul > li > a {
@@ -107,4 +111,10 @@ export const NavbarStyled = styled.nav`
         position: absolute;
         bottom: 20px;
     }
+`
+
+export const LiNavbar = styled.li`
+    padding: 10px 0;
+    background-color: ${props => props.isSelected ? props.theme.colors.primary : props.theme.colors.tertiary};
+    box-shadow: -8px 0 10px 5px ${props => props.isSelected ? "rgb(0, 0, 0, 0.2)" : "rgb(0, 0, 0, 0.0)"};
 `

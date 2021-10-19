@@ -10,7 +10,7 @@ export default function Produtos(props){
 
     return(
         <DashboardStyled>
-            <Navbar nome={empresa ? empresa.nome : ""} avatar={empresa ? empresa.urls.avatar : ""}/>
+            <Navbar nome={empresa ? empresa.nome : ""} avatar={empresa ? empresa.urls.avatar : ""} selecionado="produtos"/>
         </DashboardStyled>
     )
 }

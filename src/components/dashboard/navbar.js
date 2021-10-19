@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Router from 'next/router'
 import { destroyCookie } from 'nookies'
 
-import { NavbarStyled } from "../../styles/dashboard"
+import { NavbarStyled, LiNavbar } from "../../styles/dashboard"
 
 export default function Navbar(props){
 
@@ -23,8 +23,8 @@ export default function Navbar(props){
             </div>
 
             <ul>
-                <li><Link href="/dashboard/perfil">Perfil</Link></li>
-                <li><Link href="/dashboard/produtos">Produtos</Link></li>
+                <LiNavbar isSelected={props.selecionado == "perfil"}><Link href="/dashboard/perfil">Perfil</Link></LiNavbar>
+                <LiNavbar isSelected={props.selecionado == "produtos"}><Link href="/dashboard/produtos">Produtos</Link></LiNavbar>
             </ul>
 
             <a onClick={logout} id="logout">Sair</a>
