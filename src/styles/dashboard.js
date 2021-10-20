@@ -43,10 +43,10 @@ export const LogarButton = styled.button`
     box-shadow: 0px 1px 10px 5px rgb(0, 0, 0, 0.2);
     color: ${props => props.theme.colors.text2};
     cursor: pointer;
-    transition: 0.1s box-shadow linear;
+    transition: 0.1s filter linear;
 
     :hover{
-        box-shadow: 0px 1px 20px 10px rgb(0, 0, 0, 0.2);
+        filter: brightness(0.95);
     }
 `
 
@@ -97,7 +97,6 @@ export const NavbarStyled = styled.nav`
     }
 
     ul > li {
-        margin: 15px;
         width: 100%;
         text-align: center;
     }
@@ -115,6 +114,11 @@ export const NavbarStyled = styled.nav`
 
 export const LiNavbar = styled.li`
     padding: 10px 0;
-    background-color: ${props => props.isSelected ? props.theme.colors.primary : props.theme.colors.tertiary};
-    box-shadow: -8px 0 10px 5px ${props => props.isSelected ? "rgb(0, 0, 0, 0.2)" : "rgb(0, 0, 0, 0.0)"};
+    filter: ${props => props.isSelected ? "brightness(0.9)" : "brightness(1)"};
+    background-color: ${props => props.theme.colors.tertiary};
+    transition: 0.1s filter linear;
+
+    :hover{
+        filter: brightness(0.9);
+    }
 `
