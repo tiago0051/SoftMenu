@@ -23,12 +23,17 @@ export const LoginInput = styled.input`
     font-size: 20px;
     padding: 10px 20px;
     border: 0;
-    border-bottom: 3px solid ${props => props.theme.colors.text2};
+    border-bottom: 3px solid rgb(250,250,250, 0.4);
+    transition: 0.2s border linear;
     color: ${props => props.theme.colors.text2};
     margin-top: 50px;
 
     ::placeholder{
-        color: rgb(250,250,250, 0.3);
+        color: rgb(250,250,250, 0.4);
+    }
+
+    :focus{
+        border-bottom: 3px solid rgb(250,250,250);
     }
 `
 
@@ -44,6 +49,14 @@ export const LogarButton = styled.button`
     color: ${props => props.theme.colors.text2};
     cursor: pointer;
     transition: 0.1s filter linear;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        margin-left: 15px;
+    }
 
     :hover{
         filter: brightness(0.95);
@@ -54,6 +67,8 @@ export const DashboardStyled = styled.section`
     background-color: ${props => props.theme.colors.primary};
     height: 100vh;
     width: 100vw;
+    display: flex;
+    flex-direction: row;
 `
 
 export const NavbarStyled = styled.nav`
@@ -66,9 +81,11 @@ export const NavbarStyled = styled.nav`
     box-shadow: 5px 0 10px 1px rgb(0, 0, 0, 0.2);
     padding: 20px 0;
     color: ${props => props.theme.colors.text2};
+    position: relative;
 
     div {
         width: 60%;
+        height: 200px;
         text-align: center;
     }
 
@@ -108,7 +125,27 @@ export const NavbarStyled = styled.nav`
     #logout {
         cursor: pointer;
         position: absolute;
-        bottom: 20px;
+        bottom: 0;
+        background: ${props => props.theme.colors.tertiary};
+
+        width: 100%;
+
+        transition: 0.1s filter linear;
+        text-align: center;
+        padding: 20px;
+        font-size: 25px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            margin-left: 15px;
+        }
+
+        :hover{
+            filter: brightness(0.9);
+        }
     }
 `
 
@@ -121,4 +158,27 @@ export const LiNavbar = styled.li`
     :hover{
         filter: brightness(0.9);
     }
+`
+
+export const OptionStyled = styled.main`
+    width: 75vw;
+    height: 100vh;
+    position: relative;
+
+    h1 {
+        width: 100%;
+        text-align: center;
+        padding: 20px;
+        font-size: 25px;
+        color: ${props => props.theme.colors.text2};
+        text-transform: uppercase;
+    }
+`
+
+export const ProdutosStyled = styled.section`
+
+`
+
+export const PerfilStyled = styled.section`
+
 `

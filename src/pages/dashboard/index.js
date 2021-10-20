@@ -1,16 +1,24 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { parseCookies } from 'nookies'
 
-import { DashboardStyled } from '../../styles/dashboard'
+import { DashboardStyled, OptionStyled, ProdutosStyled } from '../../styles/dashboard'
 import Navbar from '../../components/dashboard/navbar'
 import { AuthContext } from '../../contexts/AuthContext'
 
-export default function Index(){
+export default function Produtos(props){
     const {empresa} = useContext(AuthContext)
 
     return(
         <DashboardStyled>
-            <Navbar nome={empresa ? empresa.nome : ""} avatar={empresa ? empresa.urls.avatar : ""}/>
+            <Navbar nome={empresa?.nome} avatar={empresa?.urls.avatar} selecionado="produtos"/>
+
+            <OptionStyled>
+                <h1>Produtos</h1>
+
+                <ProdutosStyled>
+
+                </ProdutosStyled>
+            </OptionStyled>
         </DashboardStyled>
     )
 }
@@ -26,8 +34,7 @@ export const getServerSideProps = async (ctx) => {
         }
     }
 
-
-    return{
+    return {
         props: {}
     }
 }

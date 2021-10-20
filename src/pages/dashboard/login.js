@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { parseCookies } from 'nookies'
+import FeatherIcons from 'feather-icons-react'
 
 import {AuthContext} from "../../contexts/AuthContext";
 
@@ -26,9 +27,9 @@ export default function Login(){
             <form onSubmit={submitForm}>
                 <img src="/Logo-Completa-Branco.svg" alt="Logo SoftMenus"/>
                 <span>{Notificação}</span>
-                <LoginInput type="text" placeholder="Usuário (CPF / CNPJ)" onChange={event => setUsuário(event.target.value)}/>
+                <LoginInput type="text" placeholder="CPF / CNPJ" onChange={event => setUsuário(event.target.value)}/>
                 <LoginInput type="password" placeholder="Senha" onChange={event => setSenha(event.target.value)}/>
-                <LogarButton type="submit">Logar</LogarButton>
+                <LogarButton type="submit">Logar<FeatherIcons icon="log-in" size="30px"/></LogarButton>
             </form>
 
         </LoginStyled>

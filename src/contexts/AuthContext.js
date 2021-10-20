@@ -18,7 +18,6 @@ export function AuthProvider({children}){
             try{
                 axios.post('/api/dashboard/userInformation', {token}).then((response) => {
                     if(response.data.isLogged){
-                        console.log(response.data.usuário)
                         setUser(response.data.usuário)
                         setEmpresa(response.data.empresa)
                     }else{

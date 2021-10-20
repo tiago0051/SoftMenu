@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react'
 import { parseCookies } from 'nookies'
 
-import { DashboardStyled } from '../../styles/dashboard'
+import { DashboardStyled, OptionStyled, PerfilStyled } from '../../styles/dashboard'
 import Navbar from '../../components/dashboard/navbar'
 import { AuthContext } from '../../contexts/AuthContext'
 
@@ -10,7 +10,15 @@ export default function Perfil(){
 
     return(
         <DashboardStyled>
-            <Navbar nome={empresa ? empresa.nome : ""} avatar={empresa ? empresa.urls.avatar : ""} selecionado="perfil"/>
+            <Navbar nome={empresa?.nome} avatar={empresa?.urls.avatar} selecionado="perfil"/>
+
+            <OptionStyled>
+                <h1>Perfil</h1>
+
+                <PerfilStyled>
+                    
+                </PerfilStyled>
+            </OptionStyled>
         </DashboardStyled>
     )
 }
