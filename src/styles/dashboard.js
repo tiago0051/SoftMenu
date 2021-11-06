@@ -65,8 +65,7 @@ export const LogarButton = styled.button`
 
 export const DashboardStyled = styled.section`
     background-color: ${props => props.theme.colors.primary};
-    height: 100vh;
-    width: 100vw;
+    width: 100%;
     display: flex;
     flex-direction: row;
 `
@@ -81,7 +80,8 @@ export const NavbarStyled = styled.nav`
     box-shadow: 5px 0 10px 1px rgb(0, 0, 0, 0.2);
     padding: 20px 0;
     color: ${props => props.theme.colors.text2};
-    position: relative;
+    position: fixed;
+    z-index: 999;
 
     div {
         width: 60%;
@@ -161,22 +161,117 @@ export const LiNavbar = styled.li`
 `
 
 export const OptionStyled = styled.main`
-    width: 75vw;
-    height: 100vh;
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    padding-left: calc(15vw + 20px);
 
-    h1 {
+    > div:first-child {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    > div:first-child h1 {
         width: 100%;
-        text-align: center;
-        padding: 20px;
-        font-size: 25px;
+        text-align: left;
+        font-size: 40px;
         color: ${props => props.theme.colors.text2};
+        font-weight: 400;
+    }
+
+    > div:first-child button {
+        background-color: ${props => props.theme.colors.tertiary};
+        border: 0;
+        color: ${props => props.theme.colors.text2};
+        height: 60px;
+        width: 180px;
+        font-size: 25px;
+        border-radius: 10px;
+        cursor: pointer;
         text-transform: uppercase;
+        box-shadow: 0px 1px 10px 5px rgb(0, 0, 0, 0.2);
     }
 `
 
 export const ProdutosStyled = styled.section`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+    color: ${props => props.theme.colors.text2};
 
+    * {
+        font-size: 25px;
+    }
+
+    > div {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        margin-top: 20px;
+        position: relative;
+        background-color: ${props => props.theme.colors.tertiary};
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    #first-column > img {
+        border-radius: 20px;
+        width: 150px;
+    }
+
+    #second-column {
+        margin-left: 20px;
+        margin-right: 190px;
+    }
+
+    #tertiary-column {
+        position: absolute;
+        right: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: calc(100% - 40px);
+        align-items: flex-end;
+    }
+
+    #tertiary-column > div:first-child{
+        display: flex;
+        flex-direction: row;
+    }
+
+    #tertiary-column > div:first-child > h2{
+        margin-left: 30px;
+    }
+
+    #tertiary-column > div:last-child {
+        display: flex;
+        flex-direction: row;
+    }
+
+    #tertiary-column > div:last-child > button{
+        height: 50px;
+        width: 50px;
+        border: 0;
+        border-radius: 5px;
+        margin: 0 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #tertiary-column > div:last-child > button > svg{
+        height: 40px;
+        width: 40px;
+        color: ${props => props.theme.colors.tertiary};
+    }
 `
 
 export const PerfilStyled = styled.section`
