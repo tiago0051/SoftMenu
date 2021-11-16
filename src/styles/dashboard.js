@@ -1,5 +1,25 @@
 import styled from "styled-components";
 
+export const LoadingStyle = styled.div`
+    position: absolute;
+    display: ${props => (props.loading ? "flex" : "none")};
+    justify-content: center;
+    align-items: center;
+    bottom: 20px;
+    right: 20px;
+    height: 50px;
+    width: 50px;
+    z-index: 9999;
+    background-color: white;
+    border-radius: 50%;
+    
+    img {
+        border-radius: 50%;
+        height: 45px;
+        width: 45px;
+    }
+`
+
 export const LoginStyled = styled.section`
     background-color: ${props => props.theme.colors.primary};
     width: 100vw;
@@ -193,9 +213,13 @@ export const OptionStyled = styled.main`
         width: 180px;
         font-size: 25px;
         border-radius: 10px;
-        cursor: pointer;
         text-transform: uppercase;
         box-shadow: 0px 1px 10px 5px rgb(0, 0, 0, 0.2);
+        cursor: pointer;
+
+        :hover{
+            filter: brightness(0.9);
+        }
     }
 `
 
@@ -207,7 +231,7 @@ export const ProdutosStyled = styled.section`
     color: ${props => props.theme.colors.text2};
 
     * {
-        font-size: 25px;
+        font-size: 20px;
     }
 
     > div {
@@ -265,6 +289,11 @@ export const ProdutosStyled = styled.section`
         display: flex;
         justify-content: center;
         align-items: center;
+        cursor: pointer;
+
+        :hover{
+            filter: brightness(0.8);
+        }
     }
 
     #tertiary-column > div:last-child > button > svg{
@@ -275,5 +304,79 @@ export const ProdutosStyled = styled.section`
 `
 
 export const PerfilStyled = styled.section`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
+    > span {
+        font-size: 25px;
+        color: ${props => props.theme.colors.text2};
+        margin-bottom: 20px;
+    }
+
+    > div:nth-child(2) {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .imagem {
+        border-radius: 10px;
+        border: 5px dashed ${props => props.theme.colors.text2};
+        padding: 5px;
+        margin: 0 20px 20px;
+        position: relative;
+    }
+
+    .imagem > img {
+        border-radius: 10px;
+    }
+
+    .imagem > button {
+        display: none;
+        position: absolute;
+        height: calc(100% - 10px);
+        width: calc(100% - 10px);
+        background: none;
+        border: 0;
+        top: 5px;
+        left: 5px;
+        border-radius: 10px;
+        color: ${props => props.theme.colors.text2};
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.4);
+        font-weight: 700;
+        font-size: 25px;
+    }
+
+    .imagem:hover > button {
+        display: block;
+    }
+
+    .imagem:hover > img {
+        filter: blur(3px);
+    }
+
+    #informações {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #informações > input {
+        margin-bottom: 20px;
+        background: none;
+        border: 0;
+        border-bottom: 3px solid rgb(250,250,250, 0.4);
+        color: ${props => props.theme.colors.text2};
+        font-size: 20px;
+    }
+
+    #informações > input:focus {
+        border-bottom: 3px solid rgb(250,250,250, 0.8);
+    }
+
+    #informações > input::placeholder {
+        color: rgb(250,250,250, 0.4);
+    }
 `
