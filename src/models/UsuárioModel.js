@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 import { ObjectId } from "mongodb";
 import db from "../services/db"
+import {getEmpresaById} from "./EmpresaModel";
 
 export default class UsuárioModel{
     constructor(_id, UsuárioCliente, Empresa, EmailCliente, NomeCliente, TelCliente){
@@ -12,9 +13,7 @@ export default class UsuárioModel{
         this.Tel = TelCliente
 
         this.getEmpresa = async () => {
-            const DB = await db()
-
-            const Empresa = await DB.collection("empresas").findOne({_id: ObjectId(this.Empresa)})
+            const Empresa = await getEmpresaById(this.Empresa)
 
             return Empresa
         }
