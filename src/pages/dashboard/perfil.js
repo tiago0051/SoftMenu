@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { parseCookies } from 'nookies'
+import Router from 'next/router'
 
 import { DashboardStyled, OptionStyled, PerfilStyled } from '../../styles/dashboard'
 import Navbar from '../../components/dashboard/navbar'
@@ -31,9 +32,10 @@ export default function Perfil(){
     const [backgroundUrl, setBackgroundUrl] = useState()
 
     useEffect(() => {
+        console.log(empresa?.urls.avatar)
         setAvatarUrl(empresa?.urls.avatar)
         setBackgroundUrl(empresa?.urls.background)
-    }, [])
+    }, [empresa])
 
     function searchImageAvatar(){
         var inputElement = document.createElement("input");
@@ -46,7 +48,14 @@ export default function Perfil(){
         inputElement.accept = "image/*";
     
         // set onchange event to call callback when user has selected file
-        inputElement.addEventListener("change", (event) => {setAvatar(event.target.files[0]); setAvatarUrl(URL.createObjectURL(event.target.files[0]))});
+        inputElement.addEventListener("change", (event) => {
+            if(event.target.files[0].size/1024 > 100){
+                alert('Imagem muito grande')
+                return
+            }
+            setAvatar(event.target.files[0])
+            setAvatarUrl(URL.createObjectURL(event.target.files[0]))
+        });
         
         // dispatch a click event to open the file dialog
         inputElement.dispatchEvent(new MouseEvent("click")); 
@@ -70,23 +79,44 @@ export default function Perfil(){
     }
 
     function handleSubmit(e){
-        console.log(nome, descricao, whatsapp, tempoEntrega, taxaEntrega, endereço)
 
         const data = new FormData()
 
+        const {'nextauth.token': token} = parseCookies()
+        data.append('userEmpresa', empresa.user)
+        data.append('token', token)
         data.append('nome', nome)
-        data.append('descricao', descricao)
+        data.append('descrição', descricao)
         data.append('contato', whatsapp)
-        data.append('tempoEspera', tempoEntrega)
+        data.append('tempoEntrega', tempoEntrega)
         data.append('taxaEntrega', taxaEntrega)
         data.append('endereco', endereço)
-        if(avatar)
-            data.append('files', avatar)
-        if(background)
-            data.append('files', background)
+        
+        if(avatar){
+            var file = avatar;
+            var blob = file.slice(0, file.size, file.type); 
+            var extensoes = file.name.split('.').pop()
+            var newFile = new File([blob], 'avatar.' + extensoes, {type: file.type});
+
+            newFile.size/1024
+
+            data.append('file', newFile)
+        }
+        if(background){
+            var file = background;
+            var blob = file.slice(0, file.size, file.type); 
+            var extensoes = file.name.split('.').pop()
+            var newFile = new File([blob], 'background.' + extensoes, {type: file.type});
+            
+            data.append('file', newFile)
+        }
 
         axios.post('/api/dashboard/update-perfil', data).then(res => {
-            console.log(res)
+            console.log(res.data)
+            if(res.data.salvo){
+                alert('Salvo com sucesso')
+                document.location.reload(true)
+            }
         })
     }
 

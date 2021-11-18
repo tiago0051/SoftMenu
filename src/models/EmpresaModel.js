@@ -15,8 +15,12 @@ export default class EmpresaModel{
         this.taxaEntrega = taxaEntrega
         this.tempoEspera = tempoEspera
 
-        this.save = () => {
-            return db.collection('empresas').updateOne({_id: ObjectId(this._id)}, {$set: this})
+        this.save = async () => {
+            const DB = await db()
+
+            DB.collection('empresas').updateOne({_id: ObjectId(this._id)}, {$set: this})
+            
+
         }
     }
 }

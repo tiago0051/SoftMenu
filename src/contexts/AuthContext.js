@@ -45,7 +45,7 @@ export function AuthProvider({children}){
             axios({method: 'post', url: '/api/dashboard/login', timeout: 4000, data: {usuário: usuário, senha: senha}}).then((response) => {
                 if(response.status == 202 && response.data.isLogged){
                     setCookie(undefined, 'nextauth.token', response.data.token, {
-                        maxAge: 60 * 60 * 8, //8 h
+                        maxAge: 60 * 60 * 24, //8 h
                         path: '/',
                     })
     
