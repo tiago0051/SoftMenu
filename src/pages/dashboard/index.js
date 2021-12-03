@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { parseCookies } from 'nookies'
 import FeatherIcon from 'feather-icons-react'
+import Router from 'next/router'
 
 import { DashboardStyled, OptionStyled, ProdutosStyled } from '../../styles/dashboard'
 import Navbar from '../../components/dashboard/navbar'
@@ -16,7 +17,7 @@ export default function Produtos(props){
             <OptionStyled>
                 <div>
                     <h1>Lista de Produtos</h1>
-                    <button>Adicionar</button>
+                    <button onClick={() => Router.push("/dashboard/produto")}>Adicionar</button>
                 </div>
 
                 <ProdutosStyled>

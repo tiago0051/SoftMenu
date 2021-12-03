@@ -3,17 +3,19 @@ import { ObjectId } from "mongodb";
 import db from "../services/db"
 
 export default class EmpresaModel{
-    constructor(_id, user, nome, descricao, urls, produtos, categorias, contato, taxaEntrega, tempoEspera){
+    constructor(_id, user, nome, descricao, status, urls, produtos, categorias, contato, taxaEntrega, tempoEspera, endereço){
         this._id = _id
         this.user = user
         this.nome = nome
         this.descricao = descricao
+        this.status = status
         this.urls = urls
         this.produtos = produtos
         this.categorias = categorias
         this.contato = contato
         this.taxaEntrega = taxaEntrega
         this.tempoEspera = tempoEspera
+        this.endereço = endereço
 
         this.save = async () => {
             const DB = await db()
@@ -31,8 +33,8 @@ export async function getEmpresaById(_id){
     const empresa = await DB.collection("empresas").findOne({_id: ObjectId(_id)})
 
     if(empresa){
-        const {_id, user, nome, descricao, urls, produtos, categorias, contato, taxaEntrega, tempoEspera} = empresa
-        return new EmpresaModel(_id, user, nome, descricao, urls, produtos, categorias, contato, taxaEntrega, tempoEspera)
+        const {_id, user, nome, descricao, status, urls, produtos, categorias, contato, taxaEntrega, tempoEspera, endereço} = empresa
+        return new EmpresaModel(_id, user, nome, descricao, status, urls, produtos, categorias, contato, taxaEntrega, tempoEspera, endereço)
     }else{
         return null
     }
@@ -44,8 +46,8 @@ export async function getEmpresaByUser(user){
     const empresa = await DB.collection("empresas").findOne({user: user})
 
     if(empresa){
-        const {_id, user, nome, descricao, urls, produtos, categorias, contato, taxaEntrega, tempoEspera} = empresa
-        return new EmpresaModel(_id, user, nome, descricao, urls, produtos, categorias, contato, taxaEntrega, tempoEspera)
+        const {_id, user, nome, descricao, status, urls, produtos, categorias, contato, taxaEntrega, tempoEspera, endereço} = empresa
+        return new EmpresaModel(_id, user, nome, descricao, status, urls, produtos, categorias, contato, taxaEntrega, tempoEspera, endereço)
     }else{
         return null
     }

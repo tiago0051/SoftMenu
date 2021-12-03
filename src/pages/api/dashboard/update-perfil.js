@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken';
 const handler = nc()
     .use(upload.array('file', 2))
     .post(async (req, res) => {
-        const {token, userEmpresa, nome, descrição, contato, taxaEntrega, tempoEntrega} = req.body
+        const {token, userEmpresa, nome, descrição, contato, taxaEntrega, tempoEntrega, endereço} = req.body
 
         try{
             
@@ -30,14 +30,18 @@ const handler = nc()
 
             if(!tempoEntrega)
                 throw new Error('tempoEntrega não informado')
+            
+            if(!endereço)
+                throw new Error('endereço não informado')
 
             const empresa = await getEmpresaByUser(userEmpresa)
 
             empresa.nome = nome
             empresa.descricao = descrição
             empresa.contato = contato
-            empresa.taxaEntrega = taxaEntrega
-            empresa.tempoEntrega = tempoEntrega
+            empresa.taxaEntrega = parseFloat(taxaEntrega)
+            empresa.tempoEspera = tempoEntrega
+            empresa.endereço = endereço
 
             var s3 = new aws.S3()
 
@@ -45,14 +49,21 @@ const handler = nc()
                 var fileName = file.originalname.split('.')[0]
                 
                 if(fileName == "avatar"){
-                    if(fileName == "avatar"){
-                        const params = {
-                                Bucket: process.env.AWS_BUCKET,
-                                Key: empresa.urls.avatar.replace('https://softmenus.s3.sa-east-1.amazonaws.com/', '')
-                        }
-                        s3.deleteObject(params).promise()
-                        empresa.urls.avatar = file.location
+                    const params = {
+                            Bucket: process.env.AWS_BUCKET,
+                            Key: empresa.urls.avatar.replace('https://softmenus.s3.sa-east-1.amazonaws.com/', '')
                     }
+                    s3.deleteObject(params).promise()
+                    empresa.urls.avatar = file.location
+                }
+
+                if(fileName == "background"){
+                    const params = {
+                            Bucket: process.env.AWS_BUCKET,
+                            Key: empresa.urls.background.replace('https://softmenus.s3.sa-east-1.amazonaws.com/', '')
+                    }
+                    s3.deleteObject(params).promise()
+                    empresa.urls.background = file.location
                 }
             })
 

@@ -407,3 +407,7 @@ export const PerfilStyled = styled.section`
         }
     }
 `
+
+export const StyledProduto = styled.section`
+
+`

@@ -38,7 +38,7 @@ export default function Login(){
                 <LogarButton type="submit" disabled={Loading}>Logar<FeatherIcons icon="log-in" size="30px"/></LogarButton>
             </form>
 
-            <LoadingStyle loading={Loading}>
+            <LoadingStyle loading={Loading ? true : false}>
                 <img src="/carregando.webp" alt="Carregando"/>
             </LoadingStyle>
         </LoginStyled>

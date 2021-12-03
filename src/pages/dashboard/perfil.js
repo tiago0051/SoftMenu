@@ -1,11 +1,10 @@
 import { useContext, useEffect, useState } from 'react'
 import { parseCookies } from 'nookies'
-import Router from 'next/router'
+import axios from 'axios'
 
 import { DashboardStyled, OptionStyled, PerfilStyled } from '../../styles/dashboard'
 import Navbar from '../../components/dashboard/navbar'
 import { AuthContext } from '../../contexts/AuthContext'
-import axios from 'axios'
 
 export default function Perfil(){
     const {empresa} = useContext(AuthContext)
@@ -17,6 +16,7 @@ export default function Perfil(){
             setWhatsapp(empresa.contato)
             setTempoEntrega(empresa.tempoEspera)
             setTaxaEntrega(empresa.taxaEntrega)
+            setEndereço(empresa.endereço)
         }
     }, [empresa])
 
@@ -24,7 +24,7 @@ export default function Perfil(){
     const [descricao, setDescricao] = useState('')
     const [whatsapp, setWhatsapp] = useState('')
     const [tempoEntrega, setTempoEntrega] = useState('')
-    const [taxaEntrega, setTaxaEntrega] = useState('')
+    const [taxaEntrega, setTaxaEntrega] = useState()
     const [endereço, setEndereço] = useState('')
     const [avatar, setAvatar] = useState()
     const [avatarUrl, setAvatarUrl] = useState()
@@ -32,7 +32,6 @@ export default function Perfil(){
     const [backgroundUrl, setBackgroundUrl] = useState()
 
     useEffect(() => {
-        console.log(empresa?.urls.avatar)
         setAvatarUrl(empresa?.urls.avatar)
         setBackgroundUrl(empresa?.urls.background)
     }, [empresa])
@@ -79,6 +78,7 @@ export default function Perfil(){
     }
 
     function handleSubmit(e){
+        document.getElementById('salvar').disabled = true
 
         const data = new FormData()
 
@@ -90,7 +90,7 @@ export default function Perfil(){
         data.append('contato', whatsapp)
         data.append('tempoEntrega', tempoEntrega)
         data.append('taxaEntrega', taxaEntrega)
-        data.append('endereco', endereço)
+        data.append('endereço', endereço)
         
         if(avatar){
             var file = avatar;
@@ -115,6 +115,9 @@ export default function Perfil(){
             console.log(res.data)
             if(res.data.salvo){
                 alert('Salvo com sucesso')
+                document.location.reload(true)
+            }else{
+                alert('Erro ao salvar')
                 document.location.reload(true)
             }
         })
@@ -151,11 +154,11 @@ export default function Perfil(){
 
                         <input type="text" id="entrega" placeholder="Tempo para Entrega" defaultValue={tempoEntrega} onChange={(event) => setTempoEntrega(event.target.value)}/>
 
-                        <input type="number" id="taxa" placeholder="Taxa de Entrega" defaultValue={taxaEntrega} onChange={(event) => setTaxaEntrega(event.target.value)}/>
+                        <input type="number" id="taxa" placeholder="Taxa de Entrega" defaultValue={taxaEntrega} onChange={(event) => setTaxaEntrega(parseFloat(event.target.value))}/>
 
                         <input type="text" id="endereço" placeholder="Endereço" defaultValue={endereço} onChange={(event) => setEndereço(event.target.value)}/>
 
-                        <button onClick={handleSubmit}>Salvar</button>
+                        <button onClick={handleSubmit} id="salvar">Salvar</button>
                     </div>
 
                 </PerfilStyled>

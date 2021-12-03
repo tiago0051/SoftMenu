@@ -2,8 +2,6 @@ import React, {useState, useEffect} from 'react'
 import Image from 'next/image'
 import FeatherIcons from 'feather-icons-react'
 
-import user from '../../assets/loja/mafiaburguer.jpg'
-
 import { PerfilStyled, Title } from '../../styles/comps'
 
 export default function Perfil(props){
@@ -21,7 +19,15 @@ export default function Perfil(props){
             <div id="informacoes">
                 <div id="informacoe">
                     <p><FeatherIcons icon="dollar-sign"/> Taxa de entrega</p>
-                    <span>R$ 0,00</span>
+                    <span>
+                        {
+                            props.empresa.taxaEntrega
+                                .toLocaleString('pt-BR', {
+                                    style: 'currency',
+                                    currency: 'BRL',
+                                })
+                        }
+                    </span>
                 </div>
 
                 <div id="informacoe">
@@ -32,7 +38,7 @@ export default function Perfil(props){
 
                 <div id="informacoe">
                     <p><FeatherIcons icon="clock"/> Tempo de Espera</p>
-                    <span>40 min - 60 min</span>
+                    <span>{props.empresa.tempoEspera}</span>
                 </div>
             </div>
         </PerfilStyled>
