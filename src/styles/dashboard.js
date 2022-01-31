@@ -410,4 +410,41 @@ export const PerfilStyled = styled.section`
 
 export const StyledProduto = styled.section`
 
+    display: flex;
+    flex-direction: column;
+
+    div {
+        border-radius: 3rem;
+        padding: 0.5rem;
+        border: 0.5rem dashed white;
+        width: 350px;
+        height: 250px;
+    }
+
+    img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        border-radius: 2.5rem;
+    }
+
+    input {
+        background: none;
+        border: 0;
+        border-bottom: 5px solid rgb(250, 250, 250, 0.5);
+        font-size: 2rem;
+        color: white;
+        padding: 5px 0;
+        margin-top: 2rem;
+        width: 80%;
+    }
+
+    input:focus {
+        border-bottom: 5px solid rgb(250, 250, 250, 0.8);
+    }
+
+    input::placeholder {
+        color: rgb(250, 250, 250, 0.5)
+    }
+
 `

@@ -36,7 +36,7 @@ export default function Home(props) {
   )
 }
 
-export const getServerSideProps = async (ctx) => {
+export const getStaticProps = async (ctx) => {
   const { origin } = absoluteUrl(ctx.req, "localhost:3000");
 
   var response = await axios.get(origin + '/api/empresa')
@@ -46,6 +46,7 @@ export const getServerSideProps = async (ctx) => {
   return {
     props: {
       empresa: empresa
-    }
+    },
+    revalidate: 60*30
   }
 }
