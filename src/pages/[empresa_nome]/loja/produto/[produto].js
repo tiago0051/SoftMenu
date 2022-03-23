@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react"
 import FeatherIcons from "feather-icons-react"
 import { useRouter } from "next/router"
 
-import { ProdutoStyled, WallPaperProduct, Titulo, Bar, Varicao, VaricoesStyled } from "../../../styles/produto"
+import { ProdutoStyled, WallPaperProduct, Titulo, Bar, Varicao, VaricoesStyled } from "../../../../styles/produto"
 
 export default function Produto(props){
     const router = useRouter()
