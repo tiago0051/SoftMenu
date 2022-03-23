@@ -56,6 +56,7 @@ export const getStaticPaths = async () => {
   const response = await axios.get(`${url}/api/empresa`)
   var paths = []
   try {
+    console.log(response.data)
     paths = response.data.map(empresa => ({params: {empresa_nome: empresa.url}}))
   }catch(e) {
     console.log(e)
