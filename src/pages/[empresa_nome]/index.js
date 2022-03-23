@@ -36,7 +36,7 @@ export default function Home(props) {
   )
 }
 
-const url = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"
+const url = process.env.NEXT_PUBLIC_VERCEL_URL ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}` : "http://localhost:3000"
 
 export const getStaticProps = async (ctx) => {
   const empresa_nome = ctx.params.empresa_nome
@@ -56,7 +56,7 @@ export const getStaticPaths = async () => {
   console.log(url)
   const response = await axios.get(`${url}/api/empresa`)
   var paths = []
-  
+
   paths = response.data.map(empresa => ({params: {empresa_nome: empresa.url}}))
   
   return {
