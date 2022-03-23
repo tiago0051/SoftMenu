@@ -36,11 +36,13 @@ export default function Home(props) {
   )
 }
 
+const url = process.env.VERCEL_URL ? process.env.VERCEL_URL : "http://localhost:3000"
+
 export const getStaticProps = async (ctx) => {
   const empresa_nome = ctx.params.empresa_nome
 
-  const response_produtos = await axios.post(`http://localhost:3000/api/produtos`, {empresa_nome})
-  const response_empresa = await axios.post('http://localhost:3000/api/empresa', {empresa_nome})
+  const response_produtos = await axios.post(`${url}/api/produtos`, {empresa_nome})
+  const response_empresa = await axios.post(`${url}/api/empresa`, {empresa_nome})
 
   return {
     props: {
@@ -51,7 +53,7 @@ export const getStaticProps = async (ctx) => {
 }
 
 export const getStaticPaths = async () => {
-  const response = await axios.get("http://localhost:3000/api/empresa")
+  const response = await axios.get(`${url}/api/empresa`)
 
   const paths = response.data.map(empresa => ({params: {empresa_nome: empresa.url}}))
   
