@@ -53,14 +53,11 @@ export const getStaticProps = async (ctx) => {
 }
 
 export const getStaticPaths = async () => {
+  console.log(url)
   const response = await axios.get(`${url}/api/empresa`)
   var paths = []
-  try {
-    console.log(response.data)
-    paths = response.data.map(empresa => ({params: {empresa_nome: empresa.url}}))
-  }catch(e) {
-    console.log(e)
-  }
+  
+  paths = response.data.map(empresa => ({params: {empresa_nome: empresa.url}}))
   
   return {
     paths: paths,
