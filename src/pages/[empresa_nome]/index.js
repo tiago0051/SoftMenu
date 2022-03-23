@@ -36,7 +36,7 @@ export default function Home(props) {
   )
 }
 
-const url = `https://${process.env.VERCEL_URL}` ? process.env.VERCEL_URL : "http://localhost:3000"
+const url = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"
 
 export const getStaticProps = async (ctx) => {
   const empresa_nome = ctx.params.empresa_nome
