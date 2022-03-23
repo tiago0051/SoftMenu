@@ -2,21 +2,21 @@ import { useContext, useEffect, useState } from 'react'
 import { parseCookies } from 'nookies'
 import axios from 'axios'
 
-import { DashboardStyled, OptionStyled, PerfilStyled } from '../../styles/dashboard'
-import Navbar from '../../components/dashboard/navbar'
-import { AuthContext } from '../../contexts/AuthContext'
+import { DashboardStyled, OptionStyled, PerfilStyled } from '../../../styles/dashboard'
+import Navbar from '../../../components/dashboard/navbar'
+import { AuthContext } from '../../../contexts/AuthContext'
 
 export default function Perfil(){
     const {empresa} = useContext(AuthContext)
 
     useEffect(() => {
         if(empresa != null){
-            setNome(empresa.nome)
+            /*setNome(empresa.nome)
             setDescricao(empresa.descricao)
             setWhatsapp(empresa.contato)
             setTempoEntrega(empresa.tempoEspera)
             setTaxaEntrega(empresa.taxaEntrega)
-            setEndereço(empresa.endereço)
+            setEndereço(empresa.endereço)*/
         }
     }, [empresa])
 
@@ -32,8 +32,8 @@ export default function Perfil(){
     const [backgroundUrl, setBackgroundUrl] = useState()
 
     useEffect(() => {
-        setAvatarUrl(empresa?.urls.avatar)
-        setBackgroundUrl(empresa?.urls.background)
+        setAvatarUrl(empresa?.avatar)
+        setBackgroundUrl(empresa?.imagem_background)
     }, [empresa])
 
     function searchImageAvatar(){
@@ -125,7 +125,7 @@ export default function Perfil(){
 
     return(
         <DashboardStyled>
-            <Navbar nome={empresa?.nome} avatar={empresa?.urls.avatar} selecionado="perfil"/>
+            <Navbar nome={empresa?.nome} avatar={empresa?.avatar} selecionado="perfil"/>
 
             <OptionStyled>
                 <div>

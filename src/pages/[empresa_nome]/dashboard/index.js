@@ -1,18 +1,35 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { parseCookies } from 'nookies'
+import Head from 'next/head'
 import FeatherIcon from 'feather-icons-react'
 import Router from 'next/router'
 
-import { DashboardStyled, OptionStyled, ProdutosStyled } from '../../styles/dashboard'
-import Navbar from '../../components/dashboard/navbar'
-import { AuthContext } from '../../contexts/AuthContext'
+import { DashboardStyled, OptionStyled, ProdutosStyled } from '../../../styles/dashboard'
+import Navbar from '../../../components/dashboard/navbar'
+import { AuthContext } from '../../../contexts/AuthContext'
+import axios from 'axios'
 
 export default function Produtos(props){
     const {empresa} = useContext(AuthContext)
 
+    const [produtos, setProdutos] = useState([])
+
+    useEffect(() => {
+        if(empresa){
+            axios.post("/api/produtos", {empresa_nome: props.empresa_nome}).then((response) => {
+                if(response.status == 200){
+                    setProdutos(response.data.produtos)
+                }
+            })
+        }
+    }, [empresa])
+
     return(
         <DashboardStyled>
-            <Navbar nome={empresa?.nome} avatar={empresa?.urls.avatar} selecionado="produtos"/>
+            <Head>
+                <title>{empresa ? empresa.nome : "Carregando"} - Produtos</title>
+            </Head>
+            <Navbar nome={empresa?.nome} avatar={empresa?.avatar} selecionado="produtos"/>
 
             <OptionStyled>
                 <div>
@@ -22,22 +39,22 @@ export default function Produtos(props){
 
                 <ProdutosStyled>
                     {
-                        empresa?.produtos.map(produto => (
+                        produtos && produtos.map(produto => (
                             <div key={produto._id}>
                                 <div id="first-column">
-                                    <img src={produto.imageUrl} alt=""/>
+                                    <img src={produto.imagem} alt=""/>
                                 </div>
         
                                 <div id="second-column">
                                     <h2>{produto.nome}</h2>
                                     
-                                    <p>{produto.descrição}</p>
+                                    <p>{produto.descricao}</p>
                                 </div>
         
                                 <div id="tertiary-column">
                                     <div>
                                         <h2>
-                                            {produto.preço.toLocaleString('pt-BR', {
+                                            {produto.valor.toLocaleString('pt-BR', {
                                                             style: 'currency',
                                                             currency: 'BRL',
                                             })}
@@ -61,16 +78,19 @@ export default function Produtos(props){
 
 export const getServerSideProps = async (ctx) => {
     const {'nextauth.token': token} = parseCookies(ctx)
+
+    const empresa_nome = ctx.query.empresa_nome
+
     if(!token){
         return {
             redirect: {
-                destination: '/dashboard/login',
+                destination: `/${empresa_nome}/dashboard/login`,
                 permanent: false,
             }
         }
     }
 
     return {
-        props: {}
+        props: {empresa_nome}
     }
 }

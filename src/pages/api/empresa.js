@@ -1,16 +1,15 @@
-import db from "../../services/db";
+import { getEmpresaByUrl, getEmpresas } from "../../models/EmpresaModel";
 
 export default async function handler(req, res) {
-  var user = "rocks"
+  const empresa_nome = req.body.empresa_nome;
 
-  if(req.headers.host == 'localhost:3000' || req.headers.host =='www.softmenus.com.br' || req.headers.host =='softmenus.com.br')
-    user = "rocks"
+  if(!empresa_nome){
+    const empresas = await getEmpresas()
+    res.status(200).json(empresas)
+    return
+  }
 
-  if(req.headers.host == 'rocks.softmenus.com.br')
-    user = "rocks"
+  const empresa = await getEmpresaByUrl(empresa_nome)
 
-  const DB = await db()
-  const empresa = await DB.collection("empresas").findOne({user: user})
-
-  res.status(200).json(empresa)
+  res.status(200).json({empresa})
 }

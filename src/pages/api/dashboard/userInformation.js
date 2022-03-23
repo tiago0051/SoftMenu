@@ -9,14 +9,12 @@ export default async (req, res) => {
     const token = req.body.token
 
     const decoded = await jwt.verify(token, SECRET)
-    const idUsuário = decoded.idDB
+    const idUsuário = decoded.id
 
     const Usuário = await getUsuárioById(idUsuário)
 
-    const Empresa = await Usuário.getEmpresa()
-
     if(Usuário){
-        res.json({isLogged: true, usuário: Usuário, empresa: Empresa})
+        res.json({isLogged: true, usuário: Usuário})
     }else{
       res.json({isLogged: false})
     }

@@ -1,16 +1,13 @@
 const bcrypt = require('bcrypt');
-import { ObjectId } from "mongodb";
 import db from "../services/db"
 import {getEmpresaById} from "./EmpresaModel";
 
 export default class UsuárioModel{
-    constructor(_id, UsuárioCliente, Empresa, EmailCliente, NomeCliente, TelCliente){
-        this._id = _id
-        this.UsuárioCliente = UsuárioCliente
-        this.Empresa = Empresa
-        this.Email = EmailCliente
-        this.Nome = NomeCliente
-        this.Tel = TelCliente
+    constructor(id, email, nome, telefone){
+        this.id = id
+        this.email = email
+        this.nome = nome
+        this.telefone = telefone
 
         this.getEmpresa = async () => {
             const Empresa = await getEmpresaById(this.Empresa)
@@ -20,38 +17,55 @@ export default class UsuárioModel{
     }
 }
 
-export async function Logar(identificação, senha){
+export async function Logar(identificação, senha, empresa_nome){
     const DB = await db()
 
-    const cliente = await DB.collection("usuario").findOne({UsuárioCliente: identificação})
+    return new Promise((resolve, reject) => {
+        const query = `SELECT usuarios.* FROM usuarios INNER JOIN empresa_possui_usuario ON usuarios.id_usuario = empresa_possui_usuario.id_usuario INNER JOIN empresas ON empresas.id_empresa = empresa_possui_usuario.id_empresa WHERE email = '${identificação}' AND empresas.url = '${empresa_nome}';`
 
-    const {_id, SenhaCliente: SenhaClienteInDB, UsuárioCliente:  UsuárioClienteInDb, Empresa, EmailCliente, NomeCliente, TelCliente} = cliente
-
-    if(SenhaClienteInDB && UsuárioClienteInDb && UsuárioClienteInDb == identificação){
-        var result = await compareEncrypt(SenhaClienteInDB, senha)
+        DB.query(query, async (error, results, fields) => {
+            if(error) reject(error)
     
-        if(result){
-            var {UsuárioCliente} = cliente
-            return new UsuárioModel(_id, UsuárioCliente, Empresa, EmailCliente, NomeCliente, TelCliente)
-        }else{
-            return null
-        }
-      }else{
-          return null
-      }
+            if(results.length == 0){
+                reject(null)
+            } else {
+                const usuário = results[0]
+    
+                compareEncrypt(usuário.senha, senha).then(resultado_comparação_senha => {
+                    if(resultado_comparação_senha){
+                        resolve(new UsuárioModel(usuário.id_usuario, usuário.email, usuário.nome, usuário.tel))
+                    }else resolve(null)
+                })
+            }
+        })
+    })
 }
 
-export async function getUsuárioById(_id){
+export async function getUsuárioById(id){
     const DB = await db()
 
-    const cliente = await DB.collection("usuario").findOne({_id: ObjectId(_id)})
+    return new Promise((resolve, reject) => {
+        const query = `SELECT * FROM usuarios WHERE id_usuario = ${id}`
 
-    if(cliente){
-        var {_id, UsuárioCliente, Empresa, EmailCliente, NomeCliente, TelCliente} = cliente
-        return new UsuárioModel(_id, UsuárioCliente, Empresa, EmailCliente, NomeCliente, TelCliente)
-    }else{
-        return null
-    }
+        DB.query(query, (error, results, fields) => {
+            if(error) {
+                reject(error)
+                return
+            }else{
+                if(results){
+                    if(results.length == 0){
+                        reject(null)
+                    } else {
+                        const usuário = results[0]
+        
+                        resolve(new UsuárioModel(usuário.id_usuario, usuário.email, usuário.nome, usuário.tel))
+                    }
+                }else{
+                    reject(new Error("Nenhum resultado encontrado"))
+                }
+            }
+        })
+    })
 }
 
 async function Encrypt(pass){

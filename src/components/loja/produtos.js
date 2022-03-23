@@ -10,7 +10,7 @@ export default function Produtos(props){
     const [Categorias, SetCategorias] = useState([])
 
     useEffect(() => {
-        props.empresa.produtos.map(produto => {
+        props.empresa.map(produto => {
             var categorias = Categorias
 
             categorias.indexOf(produto.categoria) === -1 && produto.categoria != "Bebidas" ? categorias.push(produto.categoria) : undefined
@@ -24,14 +24,14 @@ export default function Produtos(props){
                 Categorias.map(categoria => (
                     <div id={"cat-" + categoria} key={categoria}>
                         {
-                            props.empresa.produtos.filter(produto => produto.categoria == categoria).map((produto) => {
+                            props.empresa.filter(produto => produto.categoria == categoria).map((produto) => {
                                 return(
                                     <Link key={produto.nome} href={"/loja/produto/" + produto.nome}><Produto id={produto.nome + "_-" + produto.preço + "_-" + produto.imageUrl}>
                                         <div id="informacoes">
                                             <h2>{produto.nome}</h2>
-                                            <p>{produto.descrição}</p>
+                                            <p>{produto.descricao}</p>
                                             <span>
-                                                {produto.preço.toLocaleString('pt-BR', {
+                                                {produto.valor.toLocaleString('pt-BR', {
                                                             style: 'currency',
                                                             currency: 'BRL',
                                                 })}
@@ -39,7 +39,7 @@ export default function Produtos(props){
                                         </div>
                         
                                         <div id="image">
-                                            <img src={produto.imageUrl} alt={produto.nome}/>
+                                            <img src={produto.imagem} alt={produto.nome}/>
                                         </div>
                                     </Produto></Link>
                                 )

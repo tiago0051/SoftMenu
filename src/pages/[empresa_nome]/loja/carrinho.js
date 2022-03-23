@@ -3,7 +3,7 @@ import FeatherIcons from 'feather-icons-react'
 import { useRouter } from "next/router"
 import Autocomplete from "react-google-autocomplete";
 
-import { CarrinhoStyled, Header, Produtos, Produto, Finalizar } from "../../styles/carrinho"
+import { CarrinhoStyled, Header, Produtos, Produto, Finalizar } from "../../../styles/carrinho"
 
 export default function Carrinho(props){
     const router = useRouter()

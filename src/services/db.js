@@ -1,14 +1,13 @@
-import { MongoClient } from 'mongodb';
+import MySql from 'mysql';
 
-var dbMongo;
-var connection
+let connection;
 
-export default async function db(){
-    if(!dbMongo || !connection){
-        connection = await MongoClient.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true})
-  
-        dbMongo = await connection.db("Main");
+export default async function DB(){
+    if(!(connection && connection.state === 'connected')){
+        connection = await MySql.createConnection("mysql://"+ process.env.PLANETSCALE_DB_USERNAME +":"+ process.env.PLANETSCALE_DB_PASSWORD +"@"+ process.env.PLANETSCALE_DB_HOST +"/"+ process.env.PLANETSCALE_DB +"?ssl=true");
+    
+        await connection.connect();
     }
 
-    return dbMongo
+    return connection;
 }

@@ -3,10 +3,10 @@ import { parseCookies } from 'nookies'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 
-import { AuthContext } from '../../contexts/AuthContext'
+import { AuthContext } from '../../../contexts/AuthContext'
 
-import Navbar from '../../components/dashboard/navbar'
-import { DashboardStyled, OptionStyled, StyledProduto } from "../../styles/dashboard"
+import Navbar from '../../../components/dashboard/navbar'
+import { DashboardStyled, OptionStyled, StyledProduto } from "../../../styles/dashboard"
 
 export default function produto() {
     const router = useRouter()

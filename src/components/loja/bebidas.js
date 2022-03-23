@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react"
 import { BebidasStyled, Bebida } from "../../styles/comps"
 
 export default function Bebidas(props){
-    const [Bebidas, setBebidas] = useState(props.empresa.produtos.filter(produto => produto.categoria == "Bebidas"))
+    const [Bebidas, setBebidas] = useState(props.empresa.filter(produto => produto.categoria == "Bebidas"))
 
     function listarBebidas(){
         const list = Bebidas.map(bebida => (

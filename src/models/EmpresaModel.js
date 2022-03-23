@@ -1,5 +1,4 @@
 const bcrypt = require('bcrypt');
-import { ObjectId } from "mongodb";
 import db from "../services/db"
 
 export default class EmpresaModel{
@@ -16,15 +15,40 @@ export default class EmpresaModel{
         this.taxaEntrega = taxaEntrega
         this.tempoEspera = tempoEspera
         this.endereço = endereço
-
-        this.save = async () => {
-            const DB = await db()
-
-            DB.collection('empresas').updateOne({_id: ObjectId(this._id)}, {$set: this})
-            
-
-        }
     }
+}
+
+export async function getEmpresaByUrl(empresa_nome){
+    const DB = await db()
+
+    return new Promise((resolve, reject) => {
+        DB.query(`SELECT * FROM empresas WHERE url='${empresa_nome}'`, (err, result) => {
+            if(err) reject(err)
+            else resolve(result[0])
+        })
+    })
+}
+
+export async function getProdutosEmpresaByUrl(empresa_nome){
+    const DB = await db()
+
+    return new Promise((resolve, reject) => {
+        DB.query(`SELECT produtos.* FROM produtos INNER JOIN empresas ON produtos.id_empresa = empresas.id_empresa WHERE url = '${empresa_nome}'`, (err, result) => {
+            if(err) reject(err)
+            else resolve(result)
+        })
+    })
+}
+
+export async function getEmpresas(){
+    const DB = await db()
+
+    return new Promise((resolve, reject) => {
+        DB.query(`SELECT * FROM empresas`, (err, result) => {
+            if(err) reject(err)
+            else resolve(result)
+        })
+    })
 }
 
 export async function getEmpresaById(_id){

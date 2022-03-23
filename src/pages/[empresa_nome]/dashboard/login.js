@@ -1,10 +1,10 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { parseCookies } from 'nookies'
 import FeatherIcons from 'feather-icons-react'
 
-import {AuthContext} from "../../contexts/AuthContext";
+import {AuthContext} from "../../../contexts/AuthContext";
 
-import { LoginStyled , LoginInput, LogarButton, LoadingStyle} from "../../styles/dashboard"
+import { LoginStyled , LoginInput, LogarButton, LoadingStyle} from "../../../styles/dashboard"
 
 export default function Login(){
     const {signIn} = useContext(AuthContext)
@@ -38,7 +38,7 @@ export default function Login(){
                 <LogarButton type="submit" disabled={Loading}>Logar<FeatherIcons icon="log-in" size="30px"/></LogarButton>
             </form>
 
-            <LoadingStyle loading={Loading ? true : false}>
+            <LoadingStyle loading={Loading}>
                 <img src="/carregando.webp" alt="Carregando"/>
             </LoadingStyle>
         </LoginStyled>

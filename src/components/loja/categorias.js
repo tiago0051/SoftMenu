@@ -9,15 +9,15 @@ export default function Categorias(props){
     const [categorias, setCategorias] = useState([])
 
     useEffect(() => {
-        setCategorias(props.empresa.categorias)
+        setCategorias(props.empresa.map(produto => produto.categoria))
     }, [])
 
     return(
         <CategoriasStyled>
             {
                 categorias.map(element => (
-                    <Categoria href={"#cat-" + element.nome} key={element.nome}>
-                        <h2>{element.nome}</h2>
+                    <Categoria href={"#cat-" + element} key={element}>
+                        <h2>{element}</h2>
                     </Categoria>
                 ))
             }

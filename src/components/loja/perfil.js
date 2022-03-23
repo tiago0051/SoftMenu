@@ -6,9 +6,9 @@ import { PerfilStyled, Title } from '../../styles/comps'
 
 export default function Perfil(props){
     return (
-        <PerfilStyled backgroundImage={props.empresa.urls.background} aberto={props.empresa.status == "ABERTO"}>
+        <PerfilStyled backgroundImage={props.empresa.imagem_background} aberto={props.empresa.status == "ABERTO"}>
             <div id="wallpaper">
-                <div id="avatar"><img src={props.empresa.urls.avatar} alt="me"/></div>
+                <div id="avatar"><img src={props.empresa.avatar} alt="me"/></div>
             </div>
 
             <div id="empresa">

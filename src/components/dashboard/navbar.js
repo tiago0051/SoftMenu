@@ -1,11 +1,13 @@
 import Link from 'next/link'
-import Router from 'next/router'
+import {useRouter} from 'next/router'
 import { destroyCookie } from 'nookies'
 import FeatherIcons from 'feather-icons-react'
 
 import { NavbarStyled, LiNavbar } from "../../styles/dashboard"
 
 export default function Navbar(props){
+    const Router = useRouter()
+    const empresa_nome = Router.query.empresa_nome;
 
     function logout(){
 
@@ -13,7 +15,7 @@ export default function Navbar(props){
             path: '/',
         })
 
-        Router.push("/dashboard/login")
+        Router.push(`/${empresa_nome}/dashboard/login`)
     }
 
     return(
@@ -24,8 +26,8 @@ export default function Navbar(props){
             </div>
 
             <ul>
-                <LiNavbar isSelected={props.selecionado == "produtos"}><Link href="/dashboard/">Produtos</Link></LiNavbar>
-                <LiNavbar isSelected={props.selecionado == "perfil"}><Link href="/dashboard/perfil">Perfil</Link></LiNavbar>
+                <LiNavbar isSelected={props.selecionado == "produtos"}><Link href={`/${empresa_nome}/dashboard`}>Produtos</Link></LiNavbar>
+                <LiNavbar isSelected={props.selecionado == "perfil"}><Link href={`/${empresa_nome}/dashboard/perfil`}>Perfil</Link></LiNavbar>
             </ul>
 
             <a onClick={logout} id="logout">Sair<FeatherIcons icon="log-out" size="25px"/></a>

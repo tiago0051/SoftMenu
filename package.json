@@ -8,15 +8,17 @@
     "start": "next start"
   },
   "dependencies": {
+    "@headlessui/react": "^1.5.0",
+    "@heroicons/react": "^1.0.6",
     "aws-sdk": "^2.1031.0",
     "axios": "^0.21.4",
     "bcrypt": "^5.0.1",
     "crypto": "^1.0.1",
     "feather-icons-react": "^0.4.3",
     "jsonwebtoken": "^8.5.1",
-    "mongodb": "^4.1.0",
     "multer": "^1.4.3",
     "multer-s3": "^2.10.0",
+    "mysql": "^2.18.1",
     "next": "^11.1.1-canary.0",
     "next-absolute-url": "^1.2.2",
     "next-connect": "^0.11.0",
@@ -27,7 +29,8 @@
     "react-dom": "17.0.2",
     "react-google-autocomplete": "^2.4.3",
     "react-icons": "^4.3.1",
-    "styled-components": "^5.3.0"
+    "styled-components": "^5.3.0",
+    "tailwindcss": "^3.0.23"
   },
   "devDependencies": {}
 }
