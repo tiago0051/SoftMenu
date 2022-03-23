@@ -1,5 +1,5 @@
 import nc from 'next-connect'
-import upload from '../../../../Utils/upload'
+import upload from '../../../Utils/upload'
 import {getEmpresaByUser} from '../../../models/EmpresaModel';
 import aws from 'aws-sdk';
 import jwt from 'jsonwebtoken';
