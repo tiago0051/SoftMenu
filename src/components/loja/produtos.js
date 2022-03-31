@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react"
 import Router from 'next/router'
 import Link from "next/link"
+import {useRouter} from "next/router"
 
 import {Produto, ProdutosStyled } from "../../styles/comps"
 import Bebidas from "./bebidas"
 
 export default function Produtos(props){
+    const router = useRouter()
+
+    const empresa_nome = router.query.empresa_nome
 
     const [Categorias, SetCategorias] = useState([])
 
@@ -26,7 +30,7 @@ export default function Produtos(props){
                         {
                             props.empresa.filter(produto => produto.categoria == categoria).map((produto) => {
                                 return(
-                                    <Link key={produto.nome} href={"/loja/produto/" + produto.nome}><Produto id={produto.nome + "_-" + produto.preço + "_-" + produto.imageUrl}>
+                                    <Link key={produto.nome} href={`/${empresa_nome}/loja/produto/${produto.nome}`}><Produto id={produto.nome + "_-" + produto.preço + "_-" + produto.imageUrl}>
                                         <div id="informacoes">
                                             <h2>{produto.nome}</h2>
                                             <p>{produto.descricao}</p>

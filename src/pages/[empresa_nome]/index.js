@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import axios from 'axios'
-import absoluteUrl from "next-absolute-url"
 
 import Perfil from "../../components/loja/perfil"
 import Categorias from "../../components/loja/categorias"
@@ -18,7 +17,7 @@ export default function Home(props) {
     <div>
 
     <Head>
-      <title>SoftMenu</title>
+      <title>{props.empresa.nome}</title>
     </Head>
 
       <main>
@@ -48,7 +47,8 @@ export const getStaticProps = async (ctx) => {
     props: {
       produtos: response_produtos.data.produtos,
       empresa: response_empresa.data.empresa
-    }
+    },
+    revalidate: 60*10
   }
 }
 
